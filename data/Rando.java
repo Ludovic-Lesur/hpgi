@@ -246,7 +246,7 @@ public class Rando {
 		Iterator<Etape> itEtapes = trace.iterator();
 		while (itEtapes.hasNext()) {
 			Etape etapeCourante = itEtapes.next();
-			if (etapeCourante.getAltitudeMin() > altitudeMax) {
+			if (etapeCourante.getAltitudeMax() > altitudeMax) {
 				altitudeMax = etapeCourante.getAltitudeMax();
 			}
 		}

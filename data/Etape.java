@@ -362,7 +362,7 @@ public class Etape {
 		Iterator<Chemin> itChemins = itineraire.iterator();
 		while (itChemins.hasNext()) {
 			Chemin cheminCourant = itChemins.next();
-			if (cheminCourant.getAltitudeMin() > altitudeMax) {
+			if (cheminCourant.getAltitudeMax() > altitudeMax) {
 				altitudeMax = cheminCourant.getAltitudeMax();
 			}
 		}
