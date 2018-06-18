@@ -20,7 +20,7 @@ public class Bibliotheque {
 	private Interface i;
 
 	// Attributs
-	public static final String dossierRandos = "C:/Users/Ludovic/Documents/Eclipse/Preparation_Rando/data/randos";
+	public static final String dossierRandos = "C:/Users/Ludovic/Documents/Eclipse/HPGI/data/randos";
 	public static final String SYM_ALL = "Toutes les randonnées   ";
 	private int nbRandos;
 	Vector<Rando> listeRandos;

@@ -132,7 +132,7 @@ for i=1:1:numEtapes
     fig = gcf ;
     set(fig, 'PaperPositionMode', 'auto') ;
     set(fig, 'PaperOrientation', 'landscape') ;
-    nomPDF = strcat('C:/Users/Ludovic/Documents/Eclipse/Preparation_Rando/output/', rando, '/Etape_', num2str(i), '.pdf') ;
+    nomPDF = strcat('C:/Users/Ludovic/Documents/Eclipse/HPGI/output/', rando, '/Etape_', num2str(i), '.pdf') ;
     print(gcf, '-dpdf', nomPDF) ;
     close all ;
 end
@@ -232,7 +232,7 @@ for i = 1:1:nbGraphes
     fig = gcf ;
     set(fig, 'PaperPositionMode', 'auto') ;
     set(fig, 'PaperOrientation', 'landscape') ;
-    nomPDF = strcat('C:/Users/Ludovic/Documents/Eclipse/Preparation_Rando/output/', rando, '/Semaine_', num2str(i), '.pdf') ;
+    nomPDF = strcat('C:/Users/Ludovic/Documents/Eclipse/HPGI/output/', rando, '/Semaine_', num2str(i), '.pdf') ;
     print(gcf, '-dpdf', nomPDF) ;
     clc ;
     close all ;

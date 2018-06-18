@@ -13,9 +13,9 @@ import java.util.*;
 public class Matlab {
 
 	// Chemins absolus des dossiers du projet.
-	public static final String OUTPUT_PATH = "C:/Users/Ludovic/Documents/Eclipse/Preparation_Rando/output/";
-	public static final String MATLAB_PATH = "C:/Users/Ludovic/Documents/Eclipse/Preparation_Rando/matlab/";
-	public static final String MATLAB_RANDO_PATH = "C:/Users/Ludovic/Documents/Eclipse/Preparation_Rando/matlab/randos/";
+	public static final String OUTPUT_PATH = "C:/Users/Ludovic/Documents/Eclipse/HPGI/output/";
+	public static final String MATLAB_PATH = "C:/Users/Ludovic/Documents/Eclipse/HPGI/matlab/";
+	public static final String MATLAB_RANDO_PATH = "C:/Users/Ludovic/Documents/Eclipse/HPGI/matlab/randos/";
 
 	/**
 	 * CREE UN DOSSIER DE SORTIE POUR UNE NOUVELLE RANDONNEE.

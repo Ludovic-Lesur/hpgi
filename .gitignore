@@ -1,0 +1,5 @@
+*.class
+data/randos
+matlab/randos
+matlab/randoCourante.txt
+output/

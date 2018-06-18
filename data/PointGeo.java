@@ -92,7 +92,12 @@ public class PointGeo {
 	 * @return nom Toponyme du point de type 'String'.
 	 */
 	public String getNom() {
-		return nom.replace(" ", "_");
+		String geek_name = nom.replace(" ", "_");
+		geek_name = geek_name.replace("é", "e");
+		geek_name = geek_name.replace("è", "e");
+		geek_name = geek_name.replace("à", "a");
+		geek_name = geek_name.replace("ù", "u");
+		return geek_name;
 	}
 
 	/**
