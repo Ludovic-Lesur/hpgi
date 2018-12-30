@@ -254,7 +254,7 @@ public class MenuGauche implements ActionListener {
 		r = newRando;
 		// Ecriture de la randonnée courante dans le fichier de paramétrage du
 		// script Matlab.
-		parametrage = new File(Matlab.MATLAB_PATH + "randoCourante.txt");
+		parametrage = new File(Matlab.MATLAB_PATH + "hike.txt");
 		creerGraphiques.setEnabled(true);
 		try {
 			FileWriter w = new FileWriter(parametrage);
