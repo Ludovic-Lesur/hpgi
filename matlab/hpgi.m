@@ -40,17 +40,22 @@ number_of_stages = str2double(fgetl(hike_data));
 
 %% STAGES GRAPHS.
 
-% Prepare hike buffers
+% Data buffers.
 name_buf = cell(1, (number_of_stages * maximum_number_of_points_per_stage));
 distance_buf = zeros(1, (number_of_stages * maximum_number_of_points_per_stage));
 altitude_buf = zeros(1, (number_of_stages * maximum_number_of_points_per_stage));
 hour_buf = cell(1, (number_of_stages * maximum_number_of_points_per_stage));
+
+% Prepare hike buffers
+hike_name_buf = cell(1, (number_of_stages + 1));
+hike_distance_buf = zeros(1, (number_of_stages + 1));
+hike_altitude_buf = zeros(1, (number_of_stages + 1));
 % Hike stats.
 hike_distance = 0;
 hike_altitude_delta_p = 0;
 hike_altitude_delta_n = 0;
 
-% Prepare weekly buffers.
+% Weekly buffers.
 week_name_buf = cell(1, 8);
 week_distance_buf = zeros(1, 8);
 week_altitude_buf = zeros(1, 8);
@@ -62,7 +67,7 @@ weekly_altitude_delta_n = 0;
 % Global variables.
 point_count = 0;
 stage_count = 0;
-previous_stage_length = 0;
+previous_cumulated_length = 0;
 week_count = 0;
 stage_start_idx = 1;
 week_start_idx = 1;
@@ -91,12 +96,16 @@ for stage_idx = 1:1:number_of_stages
         point_count = point_count + 1;
         [name_buf{1, point_count}, distance_buf(1, point_count), altitude_buf(1, point_count), hour_buf{1, point_count}] = extract_point_infos(point);  
         name_buf{1, point_count} = remove_underscores(name_buf{1, point_count});
-        % Save first stage point of the week for weekly graph.
-        if stage_count == 1
-            if point_idx == 1
-                week_name_buf{1, 1} = name_buf{1, point_count};
-                week_distance_buf(1) = distance_buf(point_count);
-                week_altitude_buf(1) = altitude_buf(point_count);
+        if point_idx == 1
+            % Save first stage point of the week for weekly graph.
+            if stage_count == 1
+                week_start_idx = point_count;
+            end
+            % Save first hike point for the hike graph.
+            if stage_idx == 1
+                hike_name_buf{1, 1} = name_buf{1, point_count};
+                hike_distance_buf(1) = distance_buf(point_count);
+                hike_altitude_buf(1) = altitude_buf(point_count);
             end
         end
     end
@@ -114,7 +123,7 @@ for stage_idx = 1:1:number_of_stages
     set(gca, 'FontName', 'Latin Modern Roman');
     for point_idx = stage_start_idx:1:point_count
         % Place tags.
-        if altitude_buf(point_idx) < 2000
+        if altitude_buf(point_idx) < 1500
             % Place point name.
             if point_idx == stage_start_idx || point_idx == point_count
                 % Colour = orange for departure and arrival points.
@@ -169,20 +178,32 @@ for stage_idx = 1:1:number_of_stages
     
     % Convert stage distance to cumulated distance.
     for point_idx = stage_start_idx:1:point_count
-        distance_buf(point_idx) = distance_buf(point_idx) + previous_stage_length;
+        distance_buf(point_idx) = distance_buf(point_idx) + previous_cumulated_length;
     end
-    previous_stage_length = stage_length;
+    previous_cumulated_length = distance_buf(point_count);
     
     % Update next stage start index.
     stage_start_idx = point_count + 1;
     
-    % Save last stage point for weekly graph.
+    % Save first point for weekly graph.
+    if stage_count == 1
+        week_name_buf{1, 1} = name_buf{1, week_start_idx};
+        week_distance_buf(1) = distance_buf(week_start_idx);
+        week_altitude_buf(1) = altitude_buf(week_start_idx);
+    end
+    
+    % Save last stage point for weekly graph. 
     week_name_buf{1, stage_count+1} = name_buf{1, point_count};
     week_distance_buf(stage_count+1) = distance_buf(point_count);
     week_altitude_buf(stage_count+1) = altitude_buf(point_count);
+    
+    % Save last stage point for hike graph.
+    hike_name_buf{1, stage_idx+1} = name_buf{1, point_count};
+    hike_distance_buf(stage_idx+1) = distance_buf(point_count);
+    hike_altitude_buf(stage_idx+1) = altitude_buf(point_count);
 
     % Build weekly graph.
-    if stage_count == 7 || stage_count == number_of_stages
+    if stage_count == 7 || stage_idx == number_of_stages
         % Update counter.
         week_count = week_count + 1;
         % Create figure.
@@ -201,7 +222,7 @@ for stage_idx = 1:1:number_of_stages
         set(gca, 'FontName', 'Latin Modern Roman');
         % Place tags.
         for point_idx = 1:1:(stage_count+1)
-            if week_altitude_buf(point_idx) < 2000
+            if week_altitude_buf(point_idx) < 1500
                 % Place point name.
                 if strcmp(week_name_buf{point_idx}(1:4), 'MIDI') == 1
                     text(week_distance_buf(point_idx), week_altitude_buf(point_idx)+50, week_name_buf{point_idx}(5:end), 'FontSize', text_size, 'Rotation', 90);
@@ -223,18 +244,16 @@ for stage_idx = 1:1:number_of_stages
         end
         % Print weekly stats.
         length_string = strcat('Longueur $\\ $ = $\\ $ ', num2str(weekly_distance), ' km');
-        text(0.8*x_high_limit, 0.90*altitude_max, length_string);
+        text((x_low_limit+0.8*(x_high_limit-x_low_limit)), 0.90*altitude_max, length_string);
         altitude_delta_p_string = strcat('Denivele + $\\ $ = $\\ $ ', num2str(weekly_altitude_delta_p), ' m');
-        text(0.8*x_high_limit, 0.85*altitude_max, altitude_delta_p_string);
+        text((x_low_limit+0.8*(x_high_limit-x_low_limit)), 0.85*altitude_max, altitude_delta_p_string);
         altitude_delta_n_string = strcat('Denivele $-$ $\\ $ = $\\ $ ', num2str(weekly_altitude_delta_n), ' m');
-        text(0.8*x_high_limit, 0.80*altitude_max, altitude_delta_n_string);
+        text((x_low_limit+0.8*(x_high_limit-x_low_limit)), 0.80*altitude_max, altitude_delta_n_string);
         % Reset stats for next week.
         weekly_distance = 0;
         weekly_altitude_delta_p = 0;
         weekly_altitude_delta_n = 0;
         stage_count = 0;
-        % Update next week start index.
-        week_start_idx = point_count + 1;
         % Save graph in PDF.
         fig = gcf;
         set(fig, 'PaperPositionMode', 'auto');
@@ -244,6 +263,57 @@ for stage_idx = 1:1:number_of_stages
         close all;
     end
 end
+
+% Whole hike graph.
+screen = get(0, 'ScreenSize');
+figure('Position', [100 100 screen(3)-100 screen(4)-100], 'visible', 'off');
+plot(distance_buf(1:point_count), altitude_buf(1:point_count), 'k:');
+hold on;
+plot(hike_distance_buf, hike_altitude_buf, 'k.');
+x_low_limit = -0.04*hike_distance;
+x_high_limit = 1.04*hike_distance;
+axis([x_low_limit, x_high_limit, altitude_min, altitude_max]);
+hike_title = strcat('\textbf{', remove_underscores(hike), '} $ \quad $ (', num2str(number_of_stages), ' etapes) $ \quad $ \textbf{RANDO COMPLETE}');
+title(hike_title, 'interpreter', 'latex');
+xlabel('Distance (km)', 'interpreter', 'latex');
+ylabel('Altitude (m)', 'interpreter', 'latex');
+set(gca, 'FontName', 'Latin Modern Roman');
+% Place tags (only departure and arrival).
+for point_idx = [1 (number_of_stages+1)]
+    if hike_altitude_buf(point_idx) < 1500
+        % Place point name.
+        if strcmp(hike_name_buf{point_idx}(1:4), 'MIDI') == 1
+            text(hike_distance_buf(point_idx), hike_altitude_buf(point_idx)+50, hike_name_buf{point_idx}(5:end), 'FontSize', text_size, 'Rotation', 90);
+        else
+            text(hike_distance_buf(point_idx), hike_altitude_buf(point_idx)+50, hike_name_buf{point_idx}, 'FontSize', text_size, 'Rotation', 90);
+        end
+        % Place altitude.
+        text(hike_distance_buf(point_idx), hike_altitude_buf(point_idx)-50, strcat(num2str(hike_altitude_buf(point_idx)), ' m'), 'Color', 'Blue', 'FontSize', text_size, 'Rotation', 90, 'HorizontalAlignment', 'right');
+    else
+        % Place point name.
+        if strcmp(hike_name_buf{point_idx}(1:4), 'MIDI') == 1
+            text(hike_distance_buf(point_idx), hike_altitude_buf(point_idx)-50, hike_name_buf{point_idx}(5:end), 'FontSize', text_size, 'Rotation', 90, 'HorizontalAlignment', 'right');
+        else
+            text(hike_distance_buf(point_idx), hike_altitude_buf(point_idx)-50, hike_name_buf{point_idx}, 'FontSize', text_size, 'Rotation', 90, 'HorizontalAlignment', 'right');
+        end
+        % Place altitude.
+        text(hike_distance_buf(point_idx), hike_altitude_buf(point_idx)+50, strcat(num2str(hike_altitude_buf(point_idx)), ' m'), 'Color', 'Blue', 'FontSize', text_size, 'Rotation', 90);
+    end
+end
+% Print hike stats.
+length_string = strcat('Longueur $\\ $ = $\\ $ ', num2str(hike_distance), ' km');
+text(0.8*x_high_limit, 0.90*altitude_max, length_string);
+altitude_delta_p_string = strcat('Denivele + $\\ $ = $\\ $ ', num2str(hike_altitude_delta_p), ' m');
+text(0.8*x_high_limit, 0.85*altitude_max, altitude_delta_p_string);
+altitude_delta_n_string = strcat('Denivele $-$ $\\ $ = $\\ $ ', num2str(hike_altitude_delta_n), ' m');
+text(0.8*x_high_limit, 0.80*altitude_max, altitude_delta_n_string);
+% Save graph in PDF.
+fig = gcf;
+set(fig, 'PaperPositionMode', 'auto');
+set(fig, 'PaperOrientation', 'landscape');
+pdf_name = strcat(output_folder, hike, '/RandoComplete.pdf');
+print(gcf, '-dpdf', pdf_name);
+close all;
 
 %% PROGRAM END.
 

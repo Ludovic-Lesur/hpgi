@@ -26,9 +26,9 @@ public class Chemin {
 	 * @param pFin
 	 *            Point de fin du chemin de type 'Point'.
 	 * @param denivPosCumule
-	 *            Dénivelé positif cumulé (en m) depuis le départ de la rando.
+	 *            Dénivelé positif cumulé (en m) depuis le départ de l'étape.
 	 * @param denivNegCumule
-	 *            Dénivelé négatif cumulé (en m) depuis le départ de la rando.
+	 *            Dénivelé négatif cumulé (en m) depuis le départ de l'étape.
 	 * @return Aucun.
 	 */
 	public Chemin(PointGeo pDebut, PointGeo pFin, int denivPosCumule, int denivNegCumule) {
@@ -36,8 +36,7 @@ public class Chemin {
 		fin = pFin;
 		longueur = pFin.getPK() - pDebut.getPK();
 		denivele = pFin.getAltitude() - pDebut.getAltitude();
-		temps = calculerTemps(longueur, denivele, debut.getPK(), denivPosCumule, denivNegCumule)
-				+ pDebut.getPause().getDuree();
+		temps = calculerTemps(longueur, denivele, debut.getPK(), denivPosCumule, denivNegCumule) + pDebut.getPause().getDuree();
 	}
 
 	/**
@@ -60,8 +59,7 @@ public class Chemin {
 	 *            de type 'int'.
 	 * @return Temps de parcours du chemin (en heures) de type 'double'.
 	 */
-	public double calculerTemps(double distance, int denivele, double distCumulee, int denivPosCumule,
-			int denivNegCumule) {
+	public double calculerTemps(double distance, int denivele, double distCumulee, int denivPosCumule, int denivNegCumule) {
 		double v;
 		if (denivele > 0) {
 			v = Stats.vitesseMon(denivPosCumule);
@@ -69,8 +67,7 @@ public class Chemin {
 			v = Stats.vitesseDes(denivNegCumule);
 		}
 		double deniv = (double) (Math.abs(denivele));
-		return Stats.alpha
-				* (Stats.coefH * ((distance) / (Stats.vitesseHor(distCumulee))) + Stats.coefV * ((deniv) / (v)));
+		return Stats.alpha * (Stats.coefH * ((distance) / (Stats.vitesseHor(distCumulee))) + Stats.coefV * ((deniv) / (v)));
 	}
 
 	/**

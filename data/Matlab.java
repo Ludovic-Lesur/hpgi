@@ -70,7 +70,7 @@ public class Matlab {
 				nbPoints++;
 				// Informations du point.
 				// En tête indiquant le lieu du repas de midi.
-				if (p.getNom().compareTo(e.getLieuMidi()) == 0) {
+				if (nbPoints == e.getLieuMidi()) {
 					w.write("MIDI_");
 				}
 				// Toponyme.
@@ -80,11 +80,11 @@ public class Matlab {
 					w.write("_\\textbf{(" + e.getDejeuner().getSymbol() + ")}");
 				}
 				// Repas de midi.
-				if (p.getNom().compareTo(e.getLieuMidi()) == 0) {
+				if (nbPoints == e.getLieuMidi()) {
 					w.write("_\\textbf{(" + e.getMidi().getSymbol() + ")}");
 				}
 				// Ravitaillement.
-				if (p.getNom().compareTo(e.getRavitaillement()) == 0) {
+				if (nbPoints == e.getRavitaillement()) {
 					w.write("_\\textbf{(RAV)}");
 				}
 				// Pause

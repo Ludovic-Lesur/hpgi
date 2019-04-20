@@ -111,16 +111,18 @@ public class Rando {
 			while (itEtapes.hasNext()) {
 				Element etapeCourante = (Element) itEtapes.next();
 				Etape nouvelleEtape = new Etape();
+				// Reset dénivelés cucmulés.
+				int denivele_positif_cumule_etape = 0;
+				int denivele_negatif_cumule_etape = 0;
 				// Heure de départ
-				nouvelleEtape
-						.setHeureDepart(Heure.affecter((etapeCourante.getChild(BaliseXML.XML_HEUREDEPART).getText())));
+				nouvelleEtape.setHeureDepart(Heure.affecter((etapeCourante.getChild(BaliseXML.XML_HEUREDEPART).getText())));
 				// Ravitaillement
-				nouvelleEtape.setRavitaillement(etapeCourante.getChild(BaliseXML.XML_RAVITAILLEMENT).getText());
+				nouvelleEtape.setRavitaillement(Integer.parseInt(etapeCourante.getChild(BaliseXML.XML_RAVITAILLEMENT).getText()));
 				// Dejeuner
 				nouvelleEtape.setDejeuner(etapeCourante.getChild(BaliseXML.XML_DEJEUNER).getText());
 				// Midi
 				Element midi = etapeCourante.getChild(BaliseXML.XML_MIDI);
-				nouvelleEtape.setLieuMidi(midi.getChild(BaliseXML.XML_LIEUMIDI).getText());
+				nouvelleEtape.setLieuMidi(Integer.parseInt(midi.getChild(BaliseXML.XML_LIEUMIDI).getText()));
 				nouvelleEtape.setMidi(midi.getChild(BaliseXML.XML_REPASMIDI).getText());
 				// Soir
 				nouvelleEtape.setSoir(etapeCourante.getChild(BaliseXML.XML_SOIR).getText());
@@ -143,8 +145,15 @@ public class Rando {
 					nouvelleEtape.ajouterPoint(actuel);
 					// Création d'un chemin avec le point précédent
 					if (nbPoints > 1) {
-						Chemin nouveauChemin = new Chemin(precedent, actuel, denivelePos, deniveleNeg);
+						// Mise à jour des dénivelés cumulés de l'étape.
+						if (actuel.getAltitude() > precedent.getAltitude()) {
+							denivele_positif_cumule_etape += (actuel.getAltitude() - precedent.getAltitude());
+						}
+						if (actuel.getAltitude() < precedent.getAltitude()) {
+							denivele_negatif_cumule_etape += (precedent.getAltitude() - actuel.getAltitude());
+						}
 						// Ajout du chemin à l'étape
+						Chemin nouveauChemin = new Chemin(precedent, actuel, denivele_positif_cumule_etape, denivele_negatif_cumule_etape);
 						nouvelleEtape.ajouterChemin(nouveauChemin);
 					}
 					precedent = new PointGeo(actuel);
@@ -310,12 +319,12 @@ public class Rando {
 		Element heureDepart = new Element(BaliseXML.XML_HEUREDEPART);
 		heureDepart.setText(newEtape.getHeureDepart().getSymbol());
 		Element ravitaillement = new Element(BaliseXML.XML_RAVITAILLEMENT);
-		ravitaillement.setText(newEtape.getRavitaillement());
+		ravitaillement.setText(Integer.toString(newEtape.getRavitaillement()));
 		Element dejeuner = new Element(BaliseXML.XML_DEJEUNER);
 		dejeuner.setText(newEtape.getDejeuner().getSymbol());
 		Element midi = new Element(BaliseXML.XML_MIDI);
 		Element lieuMidi = new Element(BaliseXML.XML_LIEUMIDI);
-		lieuMidi.setText(newEtape.getLieuMidi());
+		lieuMidi.setText(Integer.toString(newEtape.getLieuMidi()));
 		Element repasMidi = new Element(BaliseXML.XML_REPASMIDI);
 		repasMidi.setText(newEtape.getMidi().getSymbol());
 		midi.addContent(lieuMidi);

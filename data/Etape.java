@@ -15,9 +15,9 @@ public class Etape {
 
 	// Attributs sources.
 	private Heure heureDepart;
-	private String lieuRavitaillement;
+	private int lieuRavitaillement;
 	private Condition dejeuner;
-	private String lieuMidi;
+	private int lieuMidi;
 	private Condition midi;
 	private Condition soir;
 	private Condition nuit;
@@ -43,10 +43,10 @@ public class Etape {
 	public Etape() {
 		// Attributs sources.
 		heureDepart = Heure.H7M0;
-		lieuRavitaillement = "Inconnu";
+		lieuRavitaillement = 0;
 		dejeuner = Condition.R;
 		midi = Condition.R;
-		lieuMidi = "Inconnu";
+		lieuMidi = 0;
 		soir = Condition.R;
 		nuit = Condition.R;
 		itineraire = new Vector<Chemin>();
@@ -194,7 +194,7 @@ public class Etape {
 	 *            Nouveau lieu de ravitaillement de type 'String'.
 	 * @return Aucun.
 	 */
-	public void setRavitaillement(String newRavitaillement) {
+	public void setRavitaillement(int newRavitaillement) {
 		lieuRavitaillement = newRavitaillement;
 	}
 
@@ -202,9 +202,9 @@ public class Etape {
 	 * RETOURNE LE LIEU DE RAVITAILLEMENT DE L'ETAPE.
 	 * 
 	 * @param Aucun.
-	 * @return lieuRavitaillement Lieu de ravitaillement de type 'String'.
+	 * @return lieuRavitaillement Lieu de ravitaillement de type 'PointGeo'.
 	 */
-	public String getRavitaillement() {
+	public int getRavitaillement() {
 		return lieuRavitaillement;
 	}
 
@@ -212,7 +212,7 @@ public class Etape {
 	 * MODIFIE LE TYPE DE PETIT-DEJEUNER DE L'ETAPE.
 	 * 
 	 * @param String
-	 *            Nouveau type de petit-déjeuner de type 'String'.
+	 *            Nouveau type de petit-déjeuner de type 'PointGeo'.
 	 * @return Aucun.
 	 */
 	public void setDejeuner(String newDejeuner) {
@@ -233,10 +233,10 @@ public class Etape {
 	 * MODIFIE LE LIEU DU REPAS DE MIDI DE L'ETAPE.
 	 * 
 	 * @param newLieuMidi
-	 *            Nouveau lieu du repas de midi, de type 'String'.
+	 *            Nouveau lieu du repas de midi, de type 'PointGeo'.
 	 * @return Aucun.
 	 */
-	public void setLieuMidi(String newLieuMidi) {
+	public void setLieuMidi(int newLieuMidi) {
 		lieuMidi = newLieuMidi;
 	}
 
@@ -244,9 +244,9 @@ public class Etape {
 	 * RETOURNE LE LIEU DU REPAS DE MIDI DE L'ETAPE.
 	 * 
 	 * @param Aucun.
-	 * @return lieuMidi Lieu du repas de midi de type 'String'.
+	 * @return lieuMidi Lieu du repas de midi de type 'PointGeo'.
 	 */
-	public String getLieuMidi() {
+	public int getLieuMidi() {
 		return lieuMidi;
 	}
 

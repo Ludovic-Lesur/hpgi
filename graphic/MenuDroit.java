@@ -383,7 +383,7 @@ public class MenuDroit extends JFrame implements ActionListener {
 		}
 		// Lieu du repas de midi.
 		for (k = 0; k < choixLieuMidi.getItemCount(); k++) {
-			if (choixLieuMidi.getItemAt(k).compareTo(selectedEtape.getLieuMidi()) == 0) {
+			if (k == selectedEtape.getLieuMidi()) {
 				choixLieuMidi.setSelectedIndex(k);
 				break;
 			}
@@ -397,7 +397,7 @@ public class MenuDroit extends JFrame implements ActionListener {
 		}
 		// Lieu de ravitaillement.
 		for (k = 0; k < choixRavitaillement.getItemCount(); k++) {
-			if (choixRavitaillement.getItemAt(k).compareTo(selectedEtape.getRavitaillement()) == 0) {
+			if (k == selectedEtape.getRavitaillement()) {
 				choixRavitaillement.setSelectedIndex(k);
 				break;
 			}
@@ -497,22 +497,19 @@ public class MenuDroit extends JFrame implements ActionListener {
 			}
 
 			if (e.getSource() == choixPetitDejeuner) {
-				selectedRando.modifyXML(selectedEtape.getNumero(),
-						Condition.values()[choixPetitDejeuner.getSelectedIndex()], 0);
+				selectedRando.modifyXML(selectedEtape.getNumero(), Condition.values()[choixPetitDejeuner.getSelectedIndex()], 0);
 			}
 
 			if ((e.getSource() == choixLieuMidi) && (enable == true)) {
-				selectedRando.modifyXML(selectedEtape.getNumero(), choixLieuMidi.getSelectedItem().toString(), true);
+				selectedRando.modifyXML(selectedEtape.getNumero(), Integer.toString(choixLieuMidi.getSelectedIndex()), true);
 			}
 
 			if (e.getSource() == choixRepasMidi) {
-				selectedRando.modifyXML(selectedEtape.getNumero(),
-						Condition.values()[choixRepasMidi.getSelectedIndex()], 1);
+				selectedRando.modifyXML(selectedEtape.getNumero(), Condition.values()[choixRepasMidi.getSelectedIndex()], 1);
 			}
 
 			if ((e.getSource() == choixRavitaillement) && (enable == true)) {
-				selectedRando.modifyXML(selectedEtape.getNumero(), choixRavitaillement.getSelectedItem().toString(),
-						false);
+				selectedRando.modifyXML(selectedEtape.getNumero(), Integer.toString(choixRavitaillement.getSelectedIndex()), false);
 			}
 
 			if (e.getSource() == choixSoir) {
