@@ -46,7 +46,7 @@ public class Rando {
 	 * 
 	 * @param sourceXML
 	 *            Chemin absolu de type 'String' du fichier XML contenant les
-	 *            données de la rando.
+	 *            donnees de la rando.
 	 * @return Aucun.
 	 */
 	public Rando(File sourceXML) {
@@ -59,13 +59,13 @@ public class Rando {
 	 * AJOUTE UNE ETAPE A LA RANDONNEE.
 	 * 
 	 * @param newEtape
-	 *            Nouvelle étape à ajouter de type 'Etape'.
+	 *            Nouvelle etape a ajouter de type 'Etape'.
 	 * @return Aucun.
 	 */
 	public void ajouterEtape(Etape newEtape) {
 		trace.addElement(newEtape);
 		trace.lastElement().setNumero(trace.size());
-		// Mise à jour des stats de la traversée
+		// Mise a jour des stats de la traversee
 		longueur = longueur + (newEtape.getLongueur());
 		denivelePos = denivelePos + (newEtape.getDenivelePos());
 		deniveleNeg = deniveleNeg + (newEtape.getDeniveleNeg());
@@ -75,8 +75,8 @@ public class Rando {
 	 * RECHERCHE UNE ETAPE DE LA RANDONNEE.
 	 * 
 	 * @param numEtape
-	 *            Numéro de l'étape à chercher de type 'int'.
-	 * @return resultat Objet 'Etape' trouvé ('null' sinon).
+	 *            Numero de l'etape a chercher de type 'int'.
+	 * @return resultat Objet 'Etape' trouve ('null' sinon).
 	 */
 	public Etape rechercherEtape(int numEtape) {
 		Etape resultat = null;
@@ -93,7 +93,7 @@ public class Rando {
 	 * @return Aucun.
 	 */
 	public void update() {
-		// On crée un nouveau document JDOM avec en argument le fichier XML
+		// On cree un nouveau document JDOM avec en argument le fichier XML
 		SAXBuilder sxb = new SAXBuilder();
 		try {
 			document = sxb.build(fichierXML);
@@ -105,16 +105,16 @@ public class Rando {
 			denivelePos = 0;
 			deniveleNeg = 0;
 			nom = racine.getChild(BaliseXML.XML_NOM).getText();
-			// Boucle des étapes...
+			// Boucle des etapes...
 			List<Element> listeEtapes = racine.getChildren(BaliseXML.XML_ETAPE);
 			Iterator<Element> itEtapes = listeEtapes.iterator();
 			while (itEtapes.hasNext()) {
 				Element etapeCourante = (Element) itEtapes.next();
 				Etape nouvelleEtape = new Etape();
-				// Reset dénivelés cucmulés.
+				// Reset deniveles cucmules.
 				int denivele_positif_cumule_etape = 0;
 				int denivele_negatif_cumule_etape = 0;
-				// Heure de départ
+				// Heure de depart
 				nouvelleEtape.setHeureDepart(Heure.affecter((etapeCourante.getChild(BaliseXML.XML_HEUREDEPART).getText())));
 				// Ravitaillement
 				nouvelleEtape.setRavitaillement(Integer.parseInt(etapeCourante.getChild(BaliseXML.XML_RAVITAILLEMENT).getText()));
@@ -143,27 +143,27 @@ public class Rando {
 					Pause pause = Pause.affecter(pointCourant.getChild(BaliseXML.XML_PAUSE).getText());
 					PointGeo actuel = new PointGeo(toponyme, pk, altitude, pause);
 					nouvelleEtape.ajouterPoint(actuel);
-					// Création d'un chemin avec le point précédent
+					// Creation d'un chemin avec le point precedent
 					if (nbPoints > 1) {
-						// Mise à jour des dénivelés cumulés de l'étape.
+						// Mise a jour des deniveles cumules de l'etape.
 						if (actuel.getAltitude() > precedent.getAltitude()) {
 							denivele_positif_cumule_etape += (actuel.getAltitude() - precedent.getAltitude());
 						}
 						if (actuel.getAltitude() < precedent.getAltitude()) {
 							denivele_negatif_cumule_etape += (precedent.getAltitude() - actuel.getAltitude());
 						}
-						// Ajout du chemin à l'étape
+						// Ajout du chemin a l'etape
 						Chemin nouveauChemin = new Chemin(precedent, actuel, denivele_positif_cumule_etape, denivele_negatif_cumule_etape);
 						nouvelleEtape.ajouterChemin(nouveauChemin);
 					}
 					precedent = new PointGeo(actuel);
 				}
-				// Ajout de l'étape à la rando
+				// Ajout de l'etape a la rando
 				nouvelleEtape.majHoraire();
 				ajouterEtape(nouvelleEtape);
 			}
 		} catch (IOException e) {
-			System.out.println("Fichier non trouvé.");
+			System.out.println("Fichier non trouve.");
 		} catch (JDOMException e) {
 			System.out.println("Erreur de parsing.");
 		}
@@ -173,7 +173,7 @@ public class Rando {
 	 * MODIFIE LE NOM DE LA RANDONNEE.
 	 * 
 	 * @param newNom
-	 *            Nouveau nom de la randonnée de type 'String'.
+	 *            Nouveau nom de la randonnee de type 'String'.
 	 * @return Aucun.
 	 */
 	public void setNom(String newNom) {
@@ -184,7 +184,7 @@ public class Rando {
 	 * RENVOIE LE NOM DE LA RANDONNEE.
 	 * 
 	 * @param Aucun.
-	 * @return nom Nom de la randonnée (avec espaces).
+	 * @return nom Nom de la randonnee (avec espaces).
 	 */
 	public String getNom() {
 		return nom.replace(" ", "_");
@@ -194,8 +194,8 @@ public class Rando {
 	 * RENVOIE LA LONGUEUR TOTALE DE LA RANDONNEE.
 	 * 
 	 * @param Aucun.
-	 * @return longueur Longueur totale de la randonnée en km (arrondie au
-	 *         centième).
+	 * @return longueur Longueur totale de la randonnee en km (arrondie au
+	 *         centieme).
 	 */
 	public double getLongueurTotale() {
 		DecimalFormat df = new DecimalFormat("#.##");
@@ -210,7 +210,7 @@ public class Rando {
 	 * RENVOIE LE DENIVELE POSITIF TOTAL DE LA RANDONNEE.
 	 * 
 	 * @param Aucun.
-	 * @return denivelPos Dénivelé positif total de la randonnée en m.
+	 * @return denivelPos Denivele positif total de la randonnee en m.
 	 */
 	public int getDenivelePos() {
 		return denivelePos;
@@ -220,7 +220,7 @@ public class Rando {
 	 * RENVOIE LE DENIVELE NEGATIF TOTAL DE LA RANDONNEE.
 	 * 
 	 * @param Aucun.
-	 * @return denivelNeg Dénivelé négatif total de la randonnée en m.
+	 * @return denivelNeg Denivele negatif total de la randonnee en m.
 	 */
 	public int getDeniveleNeg() {
 		return deniveleNeg;
@@ -230,7 +230,7 @@ public class Rando {
 	 * RENVOIE L'ALTITUDE MINIMALE DE LA RANDONNEE.
 	 * 
 	 * @param Aucun.
-	 * @return altitudeMin Altitude minimale de la randonnée en m.
+	 * @return altitudeMin Altitude minimale de la randonnee en m.
 	 */
 	public int getAltitudeMin() {
 		int altitudeMin = Integer.MAX_VALUE;
@@ -248,7 +248,7 @@ public class Rando {
 	 * RENVOIE L'ALTITUDE MAXIMALE DE LA RANDONNEE.
 	 * 
 	 * @param Aucun.
-	 * @return altitudeMax Altitude maximale de la randonnée en m.
+	 * @return altitudeMax Altitude maximale de la randonnee en m.
 	 */
 	public int getAltitudeMax() {
 		int altitudeMax = Integer.MIN_VALUE;
@@ -266,7 +266,7 @@ public class Rando {
 	 * RENVOIE LA LISTE DES ETAPES DE LA RANDONNEE.
 	 * 
 	 * @param Aucun.
-	 * @return trace Liste des étapes de la randonnée de type Vector<Etape>.
+	 * @return trace Liste des etapes de la randonnee de type Vector<Etape>.
 	 */
 	public Vector<Etape> getTrace() {
 		return trace;
@@ -276,7 +276,7 @@ public class Rando {
 	 * RENVOIE LE NOMBRE D'ETAPE(S) DE LA RANDONNEE.
 	 * 
 	 * @param Aucun.
-	 * @return Nombre d'étapes constituant la randonnée.
+	 * @return Nombre d'etapes constituant la randonnee.
 	 */
 	public int getNumEtapes() {
 		return trace.size();
@@ -304,18 +304,18 @@ public class Rando {
 	 * AJOUTE UNE NOUVELLE ETAPE DANS LE FICHIER XML.
 	 * 
 	 * @param newEtape
-	 *            Etape à ajouter de type 'Etape'.
+	 *            Etape a ajouter de type 'Etape'.
 	 * @param numEtape
-	 *            Numéro de la nouvelle étape de type 'int'.
+	 *            Numero de la nouvelle etape de type 'int'.
 	 * @param fin
-	 *            Indique où l'étape doit être placée. true = l'étape est placée
-	 *            à la suite des étapes actuelles (en fin de fichier). false =
-	 *            l'étape est placée au rang 'numEtape'.
+	 *            Indique ou l'etape doit etre placee. true = l'etape est placee
+	 *            a la suite des etapes actuelles (en fin de fichier). false =
+	 *            l'etape est placee au rang 'numEtape'.
 	 * @return Aucun.
 	 */
 	public void addXML(Etape newEtape, int numEtape, boolean fin) {
 		Element etape = new Element(BaliseXML.XML_ETAPE);
-		// Création des champs.
+		// Creation des champs.
 		Element heureDepart = new Element(BaliseXML.XML_HEUREDEPART);
 		heureDepart.setText(newEtape.getHeureDepart().getSymbol());
 		Element ravitaillement = new Element(BaliseXML.XML_RAVITAILLEMENT);
@@ -340,22 +340,22 @@ public class Rando {
 		etape.addContent(midi);
 		etape.addContent(soir);
 		etape.addContent(nuit);
-		// Ajout de l'étape
+		// Ajout de l'etape
 		String pos;
 		if (fin == true) {
 			racine.addContent(etape);
-			pos = "à la fin";
+			pos = "a la fin";
 		} else {
-			// Recherche de l'index souhaité.
+			// Recherche de l'index souhaite.
 			int index = OFFSET_INFOS_RANDO + 2 * (numEtape - 1);
 			System.out.println("Index = " + index);
 			racine.addContent(index, etape);
 			pos = Integer.toString(numEtape + 1);
 		}
-		// On ajoute par défaut un point de départ un point d'arrivée.
+		// On ajoute par defaut un point de depart un point d'arrivee.
 		PointGeo depart = new PointGeo("Depart", 0.0, 0, Pause.H0M0);
 		PointGeo arrivee = new PointGeo("Arrivee", 20.0, 0, Pause.H0M0);
-		System.out.println("Ajout d'une étape à la fin de la randonnée " + nom + " (position = " + pos + ")");
+		System.out.println("Ajout d'une etape a la fin de la randonnee " + nom + " (position = " + pos + ")");
 		saveXML();
 		update();
 		if (fin == true) {
@@ -371,10 +371,10 @@ public class Rando {
 	 * AJOUTE UN NOUVEAU POINT DANS LE FICHIER XML.
 	 * 
 	 * @param numEtape
-	 *            Numéro de l'étape où le point doit être ajouter, de type
+	 *            Numero de l'etape ou le point doit etre ajouter, de type
 	 *            'int'.
 	 * @param newPoint
-	 *            Nouveau point de l'étape
+	 *            Nouveau point de l'etape
 	 * @param newPause
 	 *            Nouveau temps de pause au point de type 'Pause'.
 	 * @return Aucun.
@@ -382,7 +382,7 @@ public class Rando {
 	public void addXML(int numEtape, PointGeo newPoint) {
 		List<Element> listeEtapes = racine.getChildren(BaliseXML.XML_ETAPE);
 		Element etapeCourante = listeEtapes.get(numEtape - 1);
-		// Création des champs.
+		// Creation des champs.
 		Element point = new Element(BaliseXML.XML_POINT);
 		Element toponyme = new Element(BaliseXML.XML_TOPONYME);
 		toponyme.setText(newPoint.getNom());
@@ -396,7 +396,7 @@ public class Rando {
 		point.addContent(pk);
 		point.addContent(altitude);
 		point.addContent(pause);
-		// Recherche de l'index d'insertion pour que les points soient classés
+		// Recherche de l'index d'insertion pour que les points soient classes
 		// par PK croissant.
 		int index = OFFSET_INFOS_ETAPE;
 		double pkCourant = 0.0;
@@ -414,7 +414,7 @@ public class Rando {
 		}
 		// Ajout du point.
 		etapeCourante.addContent(index, point);
-		System.out.println("Ajout d'un point sur l'étape " + numEtape + " de la randonnée " + nom);
+		System.out.println("Ajout d'un point sur l'etape " + numEtape + " de la randonnee " + nom);
 		saveXML();
 	}
 
@@ -422,9 +422,9 @@ public class Rando {
 	 * MODIFIE L'HEURE DE DEPART D'UNE ETAPE DANS LE FICHIER XML.
 	 * 
 	 * @param numEtape
-	 *            Numéro de l'étape à modifier, de type 'int'.
+	 *            Numero de l'etape a modifier, de type 'int'.
 	 * @param newHeureDepart
-	 *            Nouvelle heure de départ de type 'Heure'.
+	 *            Nouvelle heure de depart de type 'Heure'.
 	 * @return Aucun.
 	 */
 	public void modifyXML(int numEtape, Heure newHeureDepart) {
@@ -432,7 +432,7 @@ public class Rando {
 		Element etapeCourante = listeEtapes.get(numEtape - 1);
 		Element heureDepart = etapeCourante.getChild(BaliseXML.XML_HEUREDEPART);
 		heureDepart.setText(newHeureDepart.getSymbol());
-		System.out.println("Modification de l'heure de départ de l'étape " + numEtape + " de la randonnée " + nom);
+		System.out.println("Modification de l'heure de depart de l'etape " + numEtape + " de la randonnee " + nom);
 		saveXML();
 	}
 
@@ -440,11 +440,11 @@ public class Rando {
 	 * MODIFIE LES ATTRIBUTS GEOGRAPHIQUES D'UNE ETAPE.
 	 * 
 	 * @param numEtape
-	 *            Numéro de l'étape à modifier, de type 'int'.
+	 *            Numero de l'etape a modifier, de type 'int'.
 	 * @param newLieu
 	 *            Nouveau lieu de type 'String'.
 	 * @param mode
-	 *            Booléen indiquant le lieu à modifier. 'true' = lieu du repas
+	 *            Booleen indiquant le lieu a modifier. 'true' = lieu du repas
 	 *            de midi. 'false' = lieu de ravitaillement.
 	 * @return Aucun.
 	 */
@@ -456,12 +456,12 @@ public class Rando {
 			Element lieuMidi = midi.getChild(BaliseXML.XML_LIEUMIDI);
 			lieuMidi.setText(newLieu);
 			System.out.println(
-					"Modification du lieu du repas de midi de l'étape " + numEtape + " de la randonnée " + nom);
+					"Modification du lieu du repas de midi de l'etape " + numEtape + " de la randonnee " + nom);
 		} else {
 			Element ravitaillement = etapeCourante.getChild(BaliseXML.XML_RAVITAILLEMENT);
 			ravitaillement.setText(newLieu);
 			System.out.println(
-					"Modification du lieu de ravitaillement de l'étape " + numEtape + " de la randonnée " + nom);
+					"Modification du lieu de ravitaillement de l'etape " + numEtape + " de la randonnee " + nom);
 		}
 		saveXML();
 	}
@@ -470,11 +470,11 @@ public class Rando {
 	 * MODIFIE LES ATTRIBUTS DE CONDITION D'UNE ETAPE.
 	 * 
 	 * @param numEtape
-	 *            Numéro de l'étape à modifier, de type 'int'.
+	 *            Numero de l'etape a modifier, de type 'int'.
 	 * @param newCondition
 	 *            Nouvelle condition de type 'Condition'.
 	 * @param item
-	 *            Entier indiquant l'item à modifier. '0' = petit déjeuner. '1'
+	 *            Entier indiquant l'item a modifier. '0' = petit dejeuner. '1'
 	 *            = repas du midi. '2' = repas du soir. '3' = nuit.
 	 * @return Aucun.
 	 */
@@ -485,23 +485,23 @@ public class Rando {
 		case 0:
 			Element petitDejeuner = etapeCourante.getChild(BaliseXML.XML_DEJEUNER);
 			petitDejeuner.setText(newCondition.getSymbol());
-			System.out.println("Modification du petit déjeuner de l'étape " + numEtape + " de la randonnée " + nom);
+			System.out.println("Modification du petit dejeuner de l'etape " + numEtape + " de la randonnee " + nom);
 			break;
 		case 1:
 			Element midi = etapeCourante.getChild(BaliseXML.XML_MIDI);
 			Element repasMidi = midi.getChild(BaliseXML.XML_REPASMIDI);
 			repasMidi.setText(newCondition.getSymbol());
-			System.out.println("Modification du repas de midi de l'étape " + numEtape + " de la randonnée " + nom);
+			System.out.println("Modification du repas de midi de l'etape " + numEtape + " de la randonnee " + nom);
 			break;
 		case 2:
 			Element repasSoir = etapeCourante.getChild(BaliseXML.XML_SOIR);
 			repasSoir.setText(newCondition.getSymbol());
-			System.out.println("Modification du repas du soir de l'étape " + numEtape + " de la randonnée " + nom);
+			System.out.println("Modification du repas du soir de l'etape " + numEtape + " de la randonnee " + nom);
 			break;
 		case 3:
 			Element nuit = etapeCourante.getChild(BaliseXML.XML_NUIT);
 			nuit.setText(newCondition.getSymbol());
-			System.out.println("Modification de la nuit de l'étape " + numEtape + " de la randonnée " + nom);
+			System.out.println("Modification de la nuit de l'etape " + numEtape + " de la randonnee " + nom);
 			break;
 		}
 		saveXML();
@@ -511,10 +511,10 @@ public class Rando {
 	 * MODIFIE LE TOPONYME D'UN POINT DANS LE FICHIER XML.
 	 * 
 	 * @param numEtape
-	 *            Numéro de l'étape où se trouve le point à modifier, de type
+	 *            Numero de l'etape ou se trouve le point a modifier, de type
 	 *            'int'.
 	 * @param pk
-	 *            PK du point à modifier (unique paramètre distinguant tous les
+	 *            PK du point a modifier (unique parametre distinguant tous les
 	 *            points).
 	 * @param newToponyme
 	 *            Nouveau toponyme du point de type 'String'.
@@ -530,12 +530,12 @@ public class Rando {
 			Element pointCourant = itPoints.next();
 			double pkCourant = Double.parseDouble(pointCourant.getChild(BaliseXML.XML_PK).getText());
 			if (pkCourant == pk) {
-				// Point trouvé.
+				// Point trouve.
 				pointCourant.getChild(BaliseXML.XML_TOPONYME).setText(newToponyme);
 				break;
 			}
 		}
-		System.out.println("Modification du toponyme d'un point sur l'étape " + numEtape + " de la randonnée " + nom);
+		System.out.println("Modification du toponyme d'un point sur l'etape " + numEtape + " de la randonnee " + nom);
 		saveXML();
 	}
 
@@ -543,10 +543,10 @@ public class Rando {
 	 * MODIFIE LE PK D'UN POINT DANS LE FICHIER XML.
 	 * 
 	 * @param numEtape
-	 *            Numéro de l'étape où se trouve le point à modifier, de type
+	 *            Numero de l'etape ou se trouve le point a modifier, de type
 	 *            'int'.
 	 * @param pk
-	 *            PK du point à modifier (unique paramètre distinguant tous les
+	 *            PK du point a modifier (unique parametre distinguant tous les
 	 *            points).
 	 * @param newPk
 	 *            Nouveau PK du point de type 'double'.
@@ -562,12 +562,12 @@ public class Rando {
 			Element pointCourant = itPoints.next();
 			double pkCourant = Double.parseDouble(pointCourant.getChild(BaliseXML.XML_PK).getText());
 			if (pkCourant == pk) {
-				// Point trouvé.
+				// Point trouve.
 				pointCourant.getChild(BaliseXML.XML_PK).setText(Double.toString(newPk));
 				break;
 			}
 		}
-		System.out.println("Modification du PK d'un point sur l'étape " + numEtape + " de la randonnée " + nom);
+		System.out.println("Modification du PK d'un point sur l'etape " + numEtape + " de la randonnee " + nom);
 		saveXML();
 	}
 
@@ -575,10 +575,10 @@ public class Rando {
 	 * MODIFIE L'ALTITUDE D'UN POINT DANS LE FICHIER XML.
 	 * 
 	 * @param numEtape
-	 *            Numéro de l'étape où se trouve le point à modifier, de type
+	 *            Numero de l'etape ou se trouve le point a modifier, de type
 	 *            'int'.
 	 * @param pk
-	 *            PK du point à modifier (unique paramètre distinguant tous les
+	 *            PK du point a modifier (unique parametre distinguant tous les
 	 *            points).
 	 * @param newAltitude
 	 *            Nouvelle altitude du point de type 'int'.
@@ -594,12 +594,12 @@ public class Rando {
 			Element pointCourant = itPoints.next();
 			double pkCourant = Double.parseDouble(pointCourant.getChild(BaliseXML.XML_PK).getText());
 			if (pkCourant == pk) {
-				// Point trouvé.
+				// Point trouve.
 				pointCourant.getChild(BaliseXML.XML_ALTITUDE).setText(Integer.toString(newAltitude));
 				break;
 			}
 		}
-		System.out.println("Modification de l'altitude d'un point sur l'étape " + numEtape + " de la randonnée " + nom);
+		System.out.println("Modification de l'altitude d'un point sur l'etape " + numEtape + " de la randonnee " + nom);
 		saveXML();
 	}
 
@@ -607,10 +607,10 @@ public class Rando {
 	 * MODIFIE LE TEMPS DE PAUSE D'UN POINT DANS LE FICHIER XML.
 	 * 
 	 * @param numEtape
-	 *            Numéro de l'étape où se trouve le point à modifier, de type
+	 *            Numero de l'etape ou se trouve le point a modifier, de type
 	 *            'int'.
 	 * @param pk
-	 *            PK du point à modifier (unique paramètre distinguant tous les
+	 *            PK du point a modifier (unique parametre distinguant tous les
 	 *            points).
 	 * @param newPause
 	 *            Nouveau temps de pause au point de type 'Pause'.
@@ -626,13 +626,13 @@ public class Rando {
 			Element pointCourant = itPoints.next();
 			double pkCourant = Double.parseDouble(pointCourant.getChild(BaliseXML.XML_PK).getText());
 			if (pkCourant == pk) {
-				// Point trouvé.
+				// Point trouve.
 				pointCourant.getChild(BaliseXML.XML_PAUSE).setText(newPause.getSymbol());
 				break;
 			}
 		}
 		System.out.println(
-				"Modification du temps de pause d'un point sur l'étape " + numEtape + " de la randonnée " + nom);
+				"Modification du temps de pause d'un point sur l'etape " + numEtape + " de la randonnee " + nom);
 		saveXML();
 	}
 
@@ -640,13 +640,13 @@ public class Rando {
 	 * SUPPRIME UNE ETAPE DE LA RANDONNEE DANS LE FICHIER XML.
 	 * 
 	 * @param numEtape
-	 *            Numéro de l'étape à suppprimer.
+	 *            Numero de l'etape a suppprimer.
 	 * @return Aucun.
 	 */
 	public void deleteXML(int numEtape) {
 		if (numEtape <= trace.size()) {
 			List<Element> listeEtapes = racine.getChildren(BaliseXML.XML_ETAPE);
-			System.out.println("Suppression de l'étape " + numEtape + " de la randonnée " + nom);
+			System.out.println("Suppression de l'etape " + numEtape + " de la randonnee " + nom);
 			racine.removeContent(listeEtapes.get(numEtape - 1));
 			saveXML();
 		}
@@ -656,22 +656,22 @@ public class Rando {
 	 * SUPPRIME UNE ETAPE DE LA RANDONNEE DANS LE FICHIER XML.
 	 * 
 	 * @param numEtape
-	 *            Numéro de l'étape à suppprimer.
+	 *            Numero de l'etape a suppprimer.
 	 * @return Aucun.
 	 */
 	public void deleteXML(int numEtape, double pk) {
-		// On se place à l'étape concernée si elle existe.
+		// On se place a l'etape concernee si elle existe.
 		if (numEtape <= trace.size()) {
 			List<Element> listeEtapes = racine.getChildren(BaliseXML.XML_ETAPE);
 			Element etape = listeEtapes.get(numEtape - 1);
-			// On cherche le point ayant le PK donné en argument.
+			// On cherche le point ayant le PK donne en argument.
 			List<Element> listePoints = etape.getChildren(BaliseXML.XML_POINT);
 			Iterator<Element> itPoints = listePoints.iterator();
 			while (itPoints.hasNext()) {
 				Element pointCourant = (Element) itPoints.next();
 				double pkCourant = Double.parseDouble(pointCourant.getChild(BaliseXML.XML_PK).getText());
 				if (pkCourant == pk) {
-					System.out.println("Suppression d'un point sur l'étape " + numEtape + " de la randonnée " + nom);
+					System.out.println("Suppression d'un point sur l'etape " + numEtape + " de la randonnee " + nom);
 					etape.removeContent(pointCourant);
 					break;
 				}

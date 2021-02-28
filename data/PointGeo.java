@@ -13,12 +13,12 @@ public class PointGeo {
 
 	// Attributs
 	private String nom;
-	private double pk; // Distance au départ (km).
+	private double pk; // Distance au depart (km).
 	private int altitude;
 	private Pause pause; // Temps de pause (heures).
-	private double heure; // Heure d'arrivée au point (ou heure de départ si
-							// point de départ).
-	private boolean ravitaillement; // Indique si un ravitaillement est prévu à
+	private double heure; // Heure d'arrivee au point (ou heure de depart si
+							// point de depart).
+	private boolean ravitaillement; // Indique si un ravitaillement est prevu a
 									// ce point.
 
 	/**
@@ -42,11 +42,11 @@ public class PointGeo {
 	 * @param pNom
 	 *            Toponyme du point de type 'String'.
 	 * @param pPk
-	 *            Distance au départ en kilomètres, de type 'double'.
+	 *            Distance au depart en kilometres, de type 'double'.
 	 * @param pAltitude
-	 *            Altitude du point en mètres, de type 'int'.
+	 *            Altitude du point en metres, de type 'int'.
 	 * @param pPause
-	 *            Temps de pause à ce point en heures, de type 'double'.
+	 *            Temps de pause a ce point en heures, de type 'double'.
 	 * @return Aucun.
 	 */
 	public PointGeo(String pNom, double pDistance, int pAltitude, Pause pPause) {
@@ -62,7 +62,7 @@ public class PointGeo {
 	 * CONSTRUCTEUR DE RECOPIE DE LA CLASSE POINTGEO.
 	 * 
 	 * @param p
-	 *            Point à recopier, de type 'PointGeo'.
+	 *            Point a recopier, de type 'PointGeo'.
 	 * @return Aucun.
 	 */
 	public PointGeo(PointGeo p) {
@@ -93,10 +93,10 @@ public class PointGeo {
 	 */
 	public String getNom() {
 		String geek_name = nom.replace(" ", "_");
-		geek_name = geek_name.replace("é", "e");
-		geek_name = geek_name.replace("è", "e");
-		geek_name = geek_name.replace("à", "a");
-		geek_name = geek_name.replace("ù", "u");
+		geek_name = geek_name.replace("e", "e");
+		geek_name = geek_name.replace("e", "e");
+		geek_name = geek_name.replace("a", "a");
+		geek_name = geek_name.replace("u", "u");
 		return geek_name;
 	}
 
@@ -104,7 +104,7 @@ public class PointGeo {
 	 * MODIFIE LE POINT KILOMETRIQUE DU POINT.
 	 * 
 	 * @param newPk
-	 *            Nouveau point kilométrique du point de type 'double'.
+	 *            Nouveau point kilometrique du point de type 'double'.
 	 * @return Aucun.
 	 */
 	public void setPK(double newPk) {
@@ -115,7 +115,7 @@ public class PointGeo {
 	 * RENVOIE LE POINT KILOMETRIQUE DU POINT.
 	 * 
 	 * @param Aucun.
-	 * @return pk Point kilométrique du point de type 'double'.
+	 * @return pk Point kilometrique du point de type 'double'.
 	 */
 	public double getPK() {
 		return pk;
@@ -199,7 +199,7 @@ public class PointGeo {
 	 * RENVOIE L'INFORMATION DE RAVITAILLEMENT.
 	 * 
 	 * @param Aucun.
-	 * @return ravitaillement Booléen indiquant si un ravitaillement est prévu
+	 * @return ravitaillement Booleen indiquant si un ravitaillement est prevu
 	 *         au point.
 	 */
 	public boolean getRavitaillement() {

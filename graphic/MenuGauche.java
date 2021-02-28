@@ -21,7 +21,7 @@ public class MenuGauche implements ActionListener {
 	private JPanel panel;
 	private GridBagConstraints gbc;
 
-	// Liste des randonnées.
+	// Liste des randonnees.
 	private JLabel titre;
 	private JComboBox<String> listeRandos;
 	private String randoCourante;
@@ -54,14 +54,14 @@ public class MenuGauche implements ActionListener {
 	 * CONSTRUCTEUR DE LA CLASSE MENUGAUCHE.
 	 * 
 	 * @param pI
-	 *            Interface graphique mère, de type 'Interface'.
+	 *            Interface graphique mere, de type 'Interface'.
 	 * @param mainPanel
-	 *            Panel de l'interface graphique mère, de type 'JPanel'.
+	 *            Panel de l'interface graphique mere, de type 'JPanel'.
 	 * @param mainGbc
-	 *            Contraintes de l'interface graphique mère, de type
+	 *            Contraintes de l'interface graphique mere, de type
 	 *            'GridBagConstraints'.
 	 * @param bibRando
-	 *            Bibliotheque de randonnée associe à l'interface de type
+	 *            Bibliotheque de randonnee associe a l'interface de type
 	 *            'Bibliotheque'.
 	 * @return Aucun.
 	 */
@@ -247,12 +247,12 @@ public class MenuGauche implements ActionListener {
 	 * DEFINIT LA RANDONNEE COURANTE.
 	 * 
 	 * @param newRando
-	 *            Randonnée sélectionnée dans le tableau de type 'Rando'.
+	 *            Randonnee selectionnee dans le tableau de type 'Rando'.
 	 * @return Aucun.
 	 */
 	public void setRandoCourante(Rando newRando) {
 		r = newRando;
-		// Ecriture de la randonnée courante dans le fichier de paramétrage du
+		// Ecriture de la randonnee courante dans le fichier de parametrage du
 		// script Matlab.
 		parametrage = new File(Matlab.MATLAB_PATH + "hike.txt");
 		creerGraphiques.setEnabled(true);
@@ -268,7 +268,7 @@ public class MenuGauche implements ActionListener {
 	 * AJOUTE UNE RANDONNEE AU MENU.
 	 * 
 	 * @param r
-	 *            Randonnée à ajouter de type 'Rando'.
+	 *            Randonnee a ajouter de type 'Rando'.
 	 * @return Aucun.
 	 */
 	public void ajouterRando(Rando r) {
@@ -279,18 +279,18 @@ public class MenuGauche implements ActionListener {
 	 * DEFINIT L'AFFICHAGE POUR UNE BIBLIOTHEQUE DE RANDONNEES.
 	 *
 	 * @param mainPanel
-	 *            Panel de l'interface graphique mère, de type 'JPanel'.
+	 *            Panel de l'interface graphique mere, de type 'JPanel'.
 	 * @param mainGbc
-	 *            Contraintes de l'interface graphique mère, de type
+	 *            Contraintes de l'interface graphique mere, de type
 	 *            'GridBagConstraints'.
 	 * @param bibRandos
-	 *            Bibliothèque de randonnées à afficher de type 'Bibliotheque'.
+	 *            Bibliotheque de randonnees a afficher de type 'Bibliotheque'.
 	 * @return Aucun.
 	 */
 	public void update(JPanel mainPanel, GridBagConstraints mainGbc, Bibliotheque bibRandos) {
 		if (bibRandos != null) {
 			afficher();
-			champ11.setText("Bibliothèque");
+			champ11.setText("Bibliotheque");
 			champ21.setText("Nombre de randos :");
 			champ22.setText(Integer.toString(bibRandos.getRandos().size()));
 			champ31.setForeground(Interface.BACKGROUND);
@@ -310,12 +310,12 @@ public class MenuGauche implements ActionListener {
 	 * DEFINIT L'AFFICHAGE POUR UNE RANDONNEES.
 	 *
 	 * @param mainPanel
-	 *            Panel de l'interface graphique mère, de type 'JPanel'.
+	 *            Panel de l'interface graphique mere, de type 'JPanel'.
 	 * @param mainGbc
-	 *            Contraintes de l'interface graphique mère, de type
+	 *            Contraintes de l'interface graphique mere, de type
 	 *            'GridBagConstraints'.
 	 * @param r
-	 *            Randonnée à afficher de type 'Rando'.
+	 *            Randonnee a afficher de type 'Rando'.
 	 * @return Aucun.
 	 */
 	public void update(JPanel mainPanel, GridBagConstraints mainGbc, Rando r) {
@@ -324,11 +324,11 @@ public class MenuGauche implements ActionListener {
 			champ11.setText(r.getNom().replace("_", " "));
 			champ21.setText("Longueur totale :");
 			champ22.setText(Double.toString(r.getLongueurTotale()) + " km");
-			champ31.setText("Durée :");
+			champ31.setText("Duree :");
 			champ32.setText(Integer.toString(r.getTrace().size()) + " jours");
-			champ41.setText("Dénivelé + :");
+			champ41.setText("Denivele + :");
 			champ42.setText(Integer.toString(r.getDenivelePos()) + " m");
-			champ51.setText("Dénivelé - :");
+			champ51.setText("Denivele - :");
 			champ52.setText(Integer.toString(r.getDeniveleNeg()) + " m");
 			champ61.setText("Altitude min. :");
 			if (r.getAltitudeMin() == Integer.MAX_VALUE) {
@@ -349,12 +349,12 @@ public class MenuGauche implements ActionListener {
 	 * DEFINIT L'AFFICHAGE POUR UNE ETAPE.
 	 *
 	 * @param mainPanel
-	 *            Panel de l'interface graphique mère, de type 'JPanel'.
+	 *            Panel de l'interface graphique mere, de type 'JPanel'.
 	 * @param mainGbc
-	 *            Contraintes de l'interface graphique mère, de type
+	 *            Contraintes de l'interface graphique mere, de type
 	 *            'GridBagConstraints'.
 	 * @param e
-	 *            Etape à afficher de type 'Etape'.
+	 *            Etape a afficher de type 'Etape'.
 	 * @return Aucun.
 	 */
 	public void update(JPanel mainPanel, GridBagConstraints mainGbc, Etape e) {
@@ -363,11 +363,11 @@ public class MenuGauche implements ActionListener {
 			champ11.setText("Etape " + e.getNumero());
 			champ21.setText("Longueur :");
 			champ22.setText(Double.toString(e.getLongueur()) + " km");
-			champ31.setText("Durée :");
+			champ31.setText("Duree :");
 			champ32.setText(Temps.afficherHeure(e.getTemps()));
-			champ41.setText("Dénivelé + :");
+			champ41.setText("Denivele + :");
 			champ42.setText(Integer.toString(e.getDenivelePos()) + " m");
-			champ51.setText("Dénivelé - :");
+			champ51.setText("Denivele - :");
 			champ52.setText(Integer.toString(e.getDeniveleNeg()) + " m");
 			champ61.setText("Altitude min. :");
 			if (e.getAltitudeMin() == Integer.MAX_VALUE) {
@@ -450,12 +450,12 @@ public class MenuGauche implements ActionListener {
 	 * DEFINIT LES ACTIONS DES BOUTONS.
 	 * 
 	 * @param e
-	 *            Evènement déclenché par l'appui sur un bouton.
+	 *            Evenement declenche par l'appui sur un bouton.
 	 * @return Aucun.
 	 */
 	public void actionPerformed(ActionEvent e) {
 
-		// Affichage d'une randonnée.
+		// Affichage d'une randonnee.
 		if (e.getSource() == afficher) {
 			if (randoCourante.compareTo(Bibliotheque.SYM_ALL) == 0) {
 				i.afficherBibliotheque();
@@ -464,7 +464,7 @@ public class MenuGauche implements ActionListener {
 			}
 		}
 
-		// Ouverture de la fenêtre de création d'une randonnée.
+		// Ouverture de la fenetre de creation d'une randonnee.
 		if (e.getSource() == creer) {
 			new FenetreRando(b);
 		}
@@ -479,18 +479,44 @@ public class MenuGauche implements ActionListener {
 				} catch (IOException error) {
 				}
 			}
+			ouvrirDossier.setEnabled(true);
 			Runtime runtime = Runtime.getRuntime();
-			try {
-				ouvrirDossier.setEnabled(true);
-				runtime.exec(Matlab.MATLAB_PATH + "matlab.bat");
-			} catch (IOException error) {
+			String os = System.getProperty("os.name");
+			String linux_script = Matlab.MATLAB_PATH + "matlab.sh";
+			String[] linux_cmd = new String[] {"sh", linux_script};
+			String windows_script = Matlab.MATLAB_PATH + "matlab.bat";
+			Process proc;
+			BufferedReader reader;
+			String line = "";
+			try {	
+				if (os.contains("Linux")) {
+					System.out.println("Linux system detected: use matlab.sh.");
+					proc = runtime.exec(linux_cmd);
+					reader = new BufferedReader(new InputStreamReader(proc.getInputStream()));
+					while ((line = reader.readLine()) != null) {
+			            System.out.println(line);
+			        }
+				}
+				else {
+					System.out.println("Windows system detected: use matlab.bat");
+					proc = runtime.exec(windows_script);
+				}
+				try {
+					proc.waitFor();
+				}
+				catch (InterruptedException procError) {
+	                System.out.println(procError.getMessage());
+	            }
+			}
+			catch (IOException error) {
+				System.out.println("Error executing Matlab script: " + error.getMessage());
 			}
 		}
 
 		// Ouverture du dossier contenant les graphiques.
 		if (e.getSource() == ouvrirDossier) {
 			try {
-				Desktop.getDesktop().open(new File(Matlab.OUTPUT_PATH + r.getNom()));
+				Desktop.getDesktop().open(new File(Matlab.MATLAB_OUTPUT_PATH + r.getNom()));
 			} catch (IOException error) {
 			}
 		}

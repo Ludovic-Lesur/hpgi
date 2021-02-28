@@ -22,7 +22,7 @@ public class MenuDroit extends JFrame implements ActionListener {
 	private JPanel panel;
 	private GridBagConstraints gbc;
 
-	// Eléments graphiques.
+	// Elements graphiques.
 	private JLabel titre1;
 
 	private JLabel heureDepart;
@@ -39,8 +39,8 @@ public class MenuDroit extends JFrame implements ActionListener {
 
 	private JLabel ravitaillement;
 	private JComboBox<String> choixRavitaillement;
-	boolean enable; // Permet de désactiver l'interruption ItemChanged lorsqu'on
-					// met à jour la liste des lieux.
+	boolean enable; // Permet de desactiver l'interruption ItemChanged lorsqu'on
+					// met a jour la liste des lieux.
 
 	private JLabel soir;
 	private JComboBox<String> choixSoir;
@@ -61,19 +61,19 @@ public class MenuDroit extends JFrame implements ActionListener {
 	private Rando selectedRando;
 	private Etape selectedEtape;
 	private PointGeo selectedPoint;
-	private int mode; // 0 = affichage de toutes les randonnées.
-						// 1 = affichage d'une randonnée.
-						// 2 = affichage d'une étape.
+	private int mode; // 0 = affichage de toutes les randonnees.
+						// 1 = affichage d'une randonnee.
+						// 2 = affichage d'une etape.
 
 	/**
 	 * CONSTRUCTEUR DE LA CLASSE MENUDROIT.
 	 * 
 	 * @param pI
-	 *            Interface graphique mère, de type 'Interface'.
+	 *            Interface graphique mere, de type 'Interface'.
 	 * @param mainPanel
-	 *            Panel de l'interface graphique mère, de type 'JPanel'.
+	 *            Panel de l'interface graphique mere, de type 'JPanel'.
 	 * @param mainGbc
-	 *            Contraintes de l'interface graphique mère, de type
+	 *            Contraintes de l'interface graphique mere, de type
 	 *            'GridBagConstraints'.
 	 * @return Aucun.
 	 */
@@ -103,14 +103,14 @@ public class MenuDroit extends JFrame implements ActionListener {
 		gbc.gridwidth = 1;
 		gbc.gridx = 0;
 		gbc.gridy = 1;
-		heureDepart = new JLabel("Heure de départ");
+		heureDepart = new JLabel("Heure de depart");
 		heureDepart.setFont(Interface.police);
 		heureDepart.setForeground(Color.yellow);
 		panel.add(heureDepart, gbc);
 
 		gbc.gridx = 0;
 		gbc.gridy = 2;
-		petitDejeuner = new JLabel("Petit déjeuner");
+		petitDejeuner = new JLabel("Petit dejeuner");
 		petitDejeuner.setFont(Interface.police);
 		petitDejeuner.setForeground(Color.yellow);
 		panel.add(petitDejeuner, gbc);
@@ -253,7 +253,7 @@ public class MenuDroit extends JFrame implements ActionListener {
 
 		gbc.gridx = 0;
 		gbc.gridy = 11;
-		navigation = new JButton("Retour randonnée");
+		navigation = new JButton("Retour randonnee");
 		navigation.setFont(Interface.police);
 		navigation.addActionListener(this);
 		panel.add(navigation, gbc);
@@ -286,7 +286,7 @@ public class MenuDroit extends JFrame implements ActionListener {
 	 * ACTIVE OU DESACTIVE LES BOUTONS DE MODIFICATION ET DE SUPPRESSION.
 	 * 
 	 * @param mode
-	 *            Booléen indiquant l'action. 'false' = désactivation des
+	 *            Booleen indiquant l'action. 'false' = desactivation des
 	 *            boutons. 'true' = activation des boutons.
 	 * @return Aucun.
 	 */
@@ -299,7 +299,7 @@ public class MenuDroit extends JFrame implements ActionListener {
 	 * ACTIVE OU DESACTIVE LES BOUTONS D'ORGANISATION DE L'ETAPE.
 	 * 
 	 * @param mode
-	 *            Booléen indiquant l'action. 'false' = désactivation des
+	 *            Booleen indiquant l'action. 'false' = desactivation des
 	 *            boutons. 'true' = activation des boutons.
 	 * @return Aucun.
 	 */
@@ -317,7 +317,7 @@ public class MenuDroit extends JFrame implements ActionListener {
 	 * DEFINIT LA RANDONNEE COURANTE.
 	 * 
 	 * @param newRando
-	 *            Randonnée sélectionnée dans le tableau de type 'Rando'.
+	 *            Randonnee selectionnee dans le tableau de type 'Rando'.
 	 * @return Aucun.
 	 */
 	public void setRando(Rando newRando) {
@@ -330,14 +330,14 @@ public class MenuDroit extends JFrame implements ActionListener {
 	 * DEFINIT L'ETAPE COURANTE.
 	 * 
 	 * @param newEtape
-	 *            Etape sélectionnée dans le tableau de type 'Etape'.
+	 *            Etape selectionnee dans le tableau de type 'Etape'.
 	 * @return Aucun.
 	 */
 	public void setEtape(Etape newEtape) {
 		enable = false;
 		selectedEtape = newEtape;
 		navigation.setEnabled(true);
-		navigation.setText("Afficher étape " + selectedEtape.getNumero());
+		navigation.setText("Afficher etape " + selectedEtape.getNumero());
 		// Choix des lieux.
 		choixLieuMidi.removeAllItems();
 		choixLieuMidi.addItem(" ");
@@ -349,7 +349,7 @@ public class MenuDroit extends JFrame implements ActionListener {
 			choixLieuMidi.addItem(selectedEtape.getPoints().elementAt(k).getNom());
 			choixRavitaillement.addItem(selectedEtape.getPoints().elementAt(k).getNom());
 		}
-		// Affichage des paramètres courants.
+		// Affichage des parametres courants.
 		selectOrganisation();
 		modifSuppr(true);
 		if (selectedRando.getNumEtapes() <= 1) {
@@ -366,7 +366,7 @@ public class MenuDroit extends JFrame implements ActionListener {
 	 * @return Aucun.
 	 */
 	private void selectOrganisation() {
-		// Heure de départ.
+		// Heure de depart.
 		int k = 0;
 		for (k = 0; k < choixHeureDepart.getItemCount(); k++) {
 			if (choixHeureDepart.getItemAt(k).compareTo(selectedEtape.getHeureDepart().getName()) == 0) {
@@ -374,7 +374,7 @@ public class MenuDroit extends JFrame implements ActionListener {
 				break;
 			}
 		}
-		// Petit déjeuner.
+		// Petit dejeuner.
 		for (k = 0; k < choixPetitDejeuner.getItemCount(); k++) {
 			if (choixPetitDejeuner.getItemAt(k).compareTo(selectedEtape.getDejeuner().getName()) == 0) {
 				choixPetitDejeuner.setSelectedIndex(k);
@@ -422,7 +422,7 @@ public class MenuDroit extends JFrame implements ActionListener {
 	 * DEFINIT LE POINT COURANT.
 	 * 
 	 * @param newPoint
-	 *            Point sélectionné dans le tableau de type 'PointGeo'.
+	 *            Point selectionne dans le tableau de type 'PointGeo'.
 	 * @return Aucun.
 	 */
 	public void setPointGeo(PointGeo newPoint) {
@@ -437,7 +437,7 @@ public class MenuDroit extends JFrame implements ActionListener {
 	 * DEFINIT L'AFFICHAGE POUR UNE BIBLIOTHEQUE DE RANDONNEES.
 	 * 
 	 * @param b
-	 *            Bibliothèque de randonnées à afficher de type 'Bibliotheque'.
+	 *            Bibliotheque de randonnees a afficher de type 'Bibliotheque'.
 	 * @return Aucun.
 	 */
 	public void update(Bibliotheque b) {
@@ -453,7 +453,7 @@ public class MenuDroit extends JFrame implements ActionListener {
 	 * DEFINIT L'AFFICHAGE POUR UNE RANDONNEE.
 	 * 
 	 * @param r
-	 *            Randonnées à afficher de type 'Rando'.
+	 *            Randonnees a afficher de type 'Rando'.
 	 * @return Aucun.
 	 */
 	public void update(Rando r) {
@@ -469,7 +469,7 @@ public class MenuDroit extends JFrame implements ActionListener {
 	 * DEFINIT L'AFFICHAGE POUR UNE ETAPE.
 	 * 
 	 * @param e
-	 *            Etape à afficher de type 'Etape'.
+	 *            Etape a afficher de type 'Etape'.
 	 * @return Aucun.
 	 */
 	public void update(Etape e) {
@@ -527,7 +527,7 @@ public class MenuDroit extends JFrame implements ActionListener {
 	 * DEFINIT LES ACTIONS DES BOUTONS.
 	 * 
 	 * @param e
-	 *            Evènement déclenché par l'appui sur un bouton.
+	 *            Evenement declenche par l'appui sur un bouton.
 	 * @return Aucun.
 	 */
 	public void actionPerformed(ActionEvent e) {

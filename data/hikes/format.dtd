@@ -1,0 +1,22 @@
+<!ELEMENT rando (nom, etape*)>
+
+<!ELEMENT nom (#PCDATA)>
+
+<!ELEMENT etape (heureDepart, ravitaillement, dejeuner, midi, soir, nuit, point*)>
+
+<!ELEMENT heureDepart (#PCDATA)>
+<!ELEMENT ravitaillement (#PCDATA)>
+<!ELEMENT dejeuner (#PCDATA)>
+<!ELEMENT soir (#PCDATA)>
+<!ELEMENT nuit (#PCDATA)>
+
+<!ELEMENT midi (lieu, repas)>
+<!ELEMENT lieu (#PCDATA)>
+<!ELEMENT repas (#PCDATA)>
+
+<!ELEMENT point (toponyme, pk, altitude, pause)>
+<!ELEMENT toponyme (#PCDATA)>
+<!ELEMENT pk (#PCDATA)>
+<!ELEMENT altitude (#PCDATA)>
+<!ELEMENT pause (#PCDATA)>
+

@@ -12,7 +12,7 @@ set(groot, 'defaultLegendInterpreter', 'latex');
 %% MACROS
 
 % Output folder.
-output_folder = 'C:/Users/Ludovic/Documents/Eclipse/HPGI/output/';
+output_folder = 'output/';
 % X axis limits.
 stage_length_max = 25;
 % Y axis limits
@@ -33,7 +33,7 @@ hike_name = fgetl(current_hike);
 %% OPEN HIKE FILE.
 
 disp(strcat(hike_name, {' '}, 'hike graphs'));
-hike_file_name = strcat('randos/', hike_name, '_Matlab.txt');
+hike_file_name = strcat('hikes/', hike_name, '_Matlab.txt');
 hike_data = fopen(hike_file_name, 'rt');
 hike = fgetl(hike_data);
 number_of_stages = str2double(fgetl(hike_data));

@@ -27,7 +27,7 @@ public class Temps {
 		}
 		String strHeures = Integer.toString(heures);
 		String strMinutes;
-		// Ajout d'un 0 pour les minutes de 00 à 09.
+		// Ajout d'un 0 pour les minutes de 00 a 09.
 		if (minutes < 10) {
 			strMinutes = "0" + Integer.toString(minutes);
 		} else {

@@ -19,7 +19,7 @@ public enum Pause {
 	H1M30("1h30", 1.5),
 	H2M0("2h00", 2.0);
 
-	// Attributs de chaque élément de l'énumération.
+	// Attributs de chaque element de l'enumeration.
 	private final String symbol;
 	private final String name;
 	private final double duree;
@@ -30,7 +30,7 @@ public enum Pause {
 	 * @param pName
 	 *            Nom de la pause de type 'String'.
 	 * @param pDuree
-	 *            Durée de la pause, de type 'double'.
+	 *            Duree de la pause, de type 'double'.
 	 * @return Aucun.
 	 */
 	private Pause(String pName, double pDuree) {
@@ -53,7 +53,7 @@ public enum Pause {
 	 * RENVOIE LE SYMBOLE DE LA PAUSE.
 	 * 
 	 * @param Aucun.
-	 * @return symbol Symbole de la pause utilisé dans les fichiers XML, de type
+	 * @return symbol Symbole de la pause utilise dans les fichiers XML, de type
 	 *         'String'.
 	 */
 	public String getSymbol() {
@@ -64,7 +64,7 @@ public enum Pause {
 	 * RENVOIE LA DUREE DE LA PAUSE.
 	 * 
 	 * @param Aucun.
-	 * @return duree Durée de la pause de type 'double'.
+	 * @return duree Duree de la pause de type 'double'.
 	 */
 	public double getDuree() {
 		return duree;
@@ -74,9 +74,9 @@ public enum Pause {
 	 * RENVOIE LA PAUSE CORRESPONDANT A UN SYMBOLE DONNE.
 	 * 
 	 * @param pSymbol
-	 *            Symbole recherché de type 'String'.
-	 * @return affectation Pause associée au symbole si la recherche a donné un
-	 *         résultat. 'H0M0' sinon.
+	 *            Symbole recherche de type 'String'.
+	 * @return affectation Pause associee au symbole si la recherche a donne un
+	 *         resultat. 'H0M0' sinon.
 	 */
 	public static Pause affecter(String pSymbol) {
 		Pause affectation = H0M0;

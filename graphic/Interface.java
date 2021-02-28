@@ -19,7 +19,7 @@ public class Interface {
 	public final static int COMBOBOX_HEIGHT = 20;
 	public final static Color BACKGROUND = new Color(0, 100, 0);
 
-	// Fenêtre principale.
+	// Fenetre principale.
 	private JFrame fenetre;
 	private JPanel panel;
 	private GridBagConstraints gbc;
@@ -40,9 +40,9 @@ public class Interface {
 
 		bibRandos = new Bibliotheque(this);
 
-		// Création de l'interface
+		// Creation de l'interface
 		fenetre = new JFrame();
-		fenetre.setTitle("Préparation de randonnée");
+		fenetre.setTitle("Preparation de randonnee");
 		fenetre.setLocationRelativeTo(null);
 		fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		fenetre.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -54,7 +54,7 @@ public class Interface {
 		gbc = new GridBagConstraints();
 		gbc.insets = new Insets(20, 20, 20, 20);
 
-		// Ajout des éléments
+		// Ajout des elements
 		gbc.anchor = GridBagConstraints.WEST;
 		menuGauche = new MenuGauche(this, panel, gbc, bibRandos);
 
@@ -73,7 +73,7 @@ public class Interface {
 	 * RENVOIE LA BIBLIOTHEQUE DE RANDONNEES ASSOCIEE A L'INTERFACE.
 	 * 
 	 * @param Aucun.
-	 * @return bibRandos Bibliothèque de randonnées de type 'Bibliotheque'.
+	 * @return bibRandos Bibliotheque de randonnees de type 'Bibliotheque'.
 	 */
 	public Bibliotheque getBibliotheque() {
 		return bibRandos;
@@ -96,7 +96,7 @@ public class Interface {
 	 * AJOUTE UNE RANDONNEE A L'INTERFACE.
 	 * 
 	 * @param r
-	 *            Nouvelle randonnée à ajouter de type 'Rando'.
+	 *            Nouvelle randonnee a ajouter de type 'Rando'.
 	 * @return Aucun.
 	 */
 	public void menuGaucheAjouterRando(Rando r) {
@@ -107,7 +107,7 @@ public class Interface {
 	 * DEFINIT L'AFFICHAGE GLOBAL POUR UNE RANDONNEE.
 	 * 
 	 * @param randoTrouvee
-	 *            Randonnée dont on doit afficher les informations, de type
+	 *            Randonnee dont on doit afficher les informations, de type
 	 *            'Rando'.
 	 * @return Aucun.
 	 */
@@ -137,7 +137,7 @@ public class Interface {
 	 * GRAPHIQUES.
 	 * 
 	 * @param newRando
-	 *            Objet 'Rando' sélectionnée dans le tableau principal.
+	 *            Objet 'Rando' selectionnee dans le tableau principal.
 	 * @return Aucun.
 	 */
 	public void setRando(Rando newRando) {
@@ -149,7 +149,7 @@ public class Interface {
 	 * TRANSMETS L'ETAPE SELECTIONNEE DU TABLEAU AUX AUTRES CLASSES GRAPHIQUES.
 	 * 
 	 * @param newEtape
-	 *            Objet 'Etape' sélectionné dans le tableau principal.
+	 *            Objet 'Etape' selectionne dans le tableau principal.
 	 * @return Aucun.
 	 */
 	public void setEtape(Etape newEtape) {
@@ -160,7 +160,7 @@ public class Interface {
 	 * TRANSMETS LE POINT SELECTIONNE DU TABLEAU AUX AUTRES CLASSES GRAPHIQUES.
 	 * 
 	 * @param newPoint
-	 *            Objet 'PointGeo' sélectionné dans le tableau principal.
+	 *            Objet 'PointGeo' selectionne dans le tableau principal.
 	 * @return Aucun.
 	 */
 	public void setPoint(PointGeo newPoint) {
@@ -171,7 +171,7 @@ public class Interface {
 	 * PERMET DE SAVOIR SI UNE LIGNE DU TABLEAU EST SELECTIONNEE.
 	 * 
 	 * @param Aucun.
-	 * @return 'true' si une ligne du tableau a été sélectionnée par un clic
+	 * @return 'true' si une ligne du tableau a ete selectionnee par un clic
 	 *         souris. 'false' sinon.
 	 */
 	public boolean rowIsSelected() {

@@ -34,7 +34,7 @@ public class FenetreRando extends JFrame implements ActionListener, DocumentList
 	 * CONSTRUCTEUR DE LA CLASSE FENETRERERANDO.
 	 * 
 	 * @param bibRandos
-	 *            Bibliotheque à laquelle la randonnée doit être ajoutée, de
+	 *            Bibliotheque a laquelle la randonnee doit etre ajoutee, de
 	 *            type 'Bibliotheque'.
 	 * @return Aucun.
 	 */
@@ -42,9 +42,9 @@ public class FenetreRando extends JFrame implements ActionListener, DocumentList
 
 		b = bibRandos;
 
-		// Création de l'interface
+		// Creation de l'interface
 		fenetre = new JFrame();
-		fenetre.setTitle("Créer randonnée");
+		fenetre.setTitle("Creer randonnee");
 		fenetre.setSize(350, 200);
 		fenetre.setResizable(false);
 		fenetre.setLocationRelativeTo(null);
@@ -80,7 +80,7 @@ public class FenetreRando extends JFrame implements ActionListener, DocumentList
 		gbc.gridx = 0;
 		gbc.gridy = 2;
 		ok = new JButton();
-		ok.setText("Créer fichier XML");
+		ok.setText("Creer fichier XML");
 		ok.setFont(Interface.police);
 		ok.setForeground(new Color(100, 200, 0));
 		ok.addActionListener(this);
@@ -95,7 +95,7 @@ public class FenetreRando extends JFrame implements ActionListener, DocumentList
 		annuler.addActionListener(this);
 		panel.add(annuler, gbc);
 
-		// Affichage de la fenêtre
+		// Affichage de la fenetre
 		fenetre.setContentPane(panel);
 		fenetre.setVisible(true);
 	}
@@ -123,7 +123,7 @@ public class FenetreRando extends JFrame implements ActionListener, DocumentList
 	 * DEFINIT LES ACTIONS DES BOUTONS.
 	 * 
 	 * @param e
-	 *            Evènement déclenché par l'appui sur un bouton.
+	 *            Evenement declenche par l'appui sur un bouton.
 	 * @return Aucun.
 	 */
 	public void actionPerformed(ActionEvent e) {
@@ -142,7 +142,7 @@ public class FenetreRando extends JFrame implements ActionListener, DocumentList
 	 * FONCTIONS DE VERIFICATION DE SAISIE CLAVIER.
 	 * 
 	 * @param e
-	 *            Evènement déclenché par une saisie clavier.
+	 *            Evenement declenche par une saisie clavier.
 	 * @return Aucun.
 	 */
 	@Override

@@ -14,21 +14,21 @@ public class Chemin {
 	private PointGeo fin;
 	private double longueur;
 	private int denivele;
-	private double temps; // Temps de parcours entre 'début' et 'fin' (en
+	private double temps; // Temps de parcours entre 'debut' et 'fin' (en
 							// heures).
-	private double heureFin; // Heure d'arrivée au point "fin".
+	private double heureFin; // Heure d'arrivee au point "fin".
 
 	/**
 	 * CONSTRUCTEUR DE LA CLASSE CHEMIN.
 	 * 
 	 * @param pDebut
-	 *            Point de début du chemin de type 'Point'.
+	 *            Point de debut du chemin de type 'Point'.
 	 * @param pFin
 	 *            Point de fin du chemin de type 'Point'.
 	 * @param denivPosCumule
-	 *            Dénivelé positif cumulé (en m) depuis le départ de l'étape.
+	 *            Denivele positif cumule (en m) depuis le depart de l'etape.
 	 * @param denivNegCumule
-	 *            Dénivelé négatif cumulé (en m) depuis le départ de l'étape.
+	 *            Denivele negatif cumule (en m) depuis le depart de l'etape.
 	 * @return Aucun.
 	 */
 	public Chemin(PointGeo pDebut, PointGeo pFin, int denivPosCumule, int denivNegCumule) {
@@ -44,18 +44,18 @@ public class Chemin {
 	 * PHYSIQUES.
 	 * 
 	 * @param distance
-	 *            Distance à parcourir (en km) de type 'double'.
+	 *            Distance a parcourir (en km) de type 'double'.
 	 * @param denivele
-	 *            Dénivelé entre le début et la fin du chemin (en m) de type
+	 *            Denivele entre le debut et la fin du chemin (en m) de type
 	 *            'int'.
 	 * @param distCumulee
-	 *            Distance déjà parcourue (en km) depuis le départ de la rando,
+	 *            Distance deja parcourue (en km) depuis le depart de la rando,
 	 *            de type 'double'.
 	 * @param denivPosCumule
-	 *            Dénivelé positif cumulé (en m) depuis le départ de la rando,
+	 *            Denivele positif cumule (en m) depuis le depart de la rando,
 	 *            de type 'int'.
 	 * @param denivNegCumule
-	 *            Dénivelé négatif cumulé (en m) depuis le départ de la rando,
+	 *            Denivele negatif cumule (en m) depuis le depart de la rando,
 	 *            de type 'int'.
 	 * @return Temps de parcours du chemin (en heures) de type 'double'.
 	 */
@@ -74,7 +74,7 @@ public class Chemin {
 	 * RETOURNE LE POINT DE DEBUT DU CHEMIN.
 	 * 
 	 * @param Aucun.
-	 * @return debut Point de début du chemin de type 'Point'.
+	 * @return debut Point de debut du chemin de type 'Point'.
 	 */
 	public PointGeo getDebut() {
 		return debut;
@@ -104,7 +104,7 @@ public class Chemin {
 	 * RETOURNE LE DENIVELE DU CHEMIN.
 	 * 
 	 * @param Aucun.
-	 * @return denivele Dénivelé entre les points de début et de fin (en m) de
+	 * @return denivele Denivele entre les points de debut et de fin (en m) de
 	 *         type 'int'.
 	 */
 	public int getDenivele() {
@@ -125,7 +125,7 @@ public class Chemin {
 	 * MODIFIE L'HEURE DU POINT DE DEPART DE L'ETAPE.
 	 * 
 	 * @param newHoraire
-	 *            Heure de départ de l'étape, de type 'double'.
+	 *            Heure de depart de l'etape, de type 'double'.
 	 * @return Aucun.
 	 */
 	public void setHeureDebut(double heureDepart) {
@@ -136,7 +136,7 @@ public class Chemin {
 	 * MODIFIE L'HEURE D'ARRIVEE AU POINT DE FIN.
 	 * 
 	 * @param newHoraire
-	 *            Nouvelle heure d'arrivée au point fin, de type 'double'.
+	 *            Nouvelle heure d'arrivee au point fin, de type 'double'.
 	 * @return Aucun.
 	 */
 	public void setHeureFin(double newHeureFin) {
@@ -148,7 +148,7 @@ public class Chemin {
 	 * RETOURNE L'HEURE D'ARRIVEE AU POINT DE FIN.
 	 * 
 	 * @param Aucun.
-	 * @return horaire Heure d'arrivée au point fin, de type 'double'.
+	 * @return horaire Heure d'arrivee au point fin, de type 'double'.
 	 */
 	public double getHeureFin() {
 		return heureFin;

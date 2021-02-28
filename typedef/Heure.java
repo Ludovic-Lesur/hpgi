@@ -29,7 +29,7 @@ public enum Heure {
 	H13M30("13h30", 13.5),
 	H14M0("14h00", 14.0);
 
-	// Attributs de chaque élément de l'énumération.
+	// Attributs de chaque element de l'enumeration.
 	private final String symbol;
 	private final String name;
 	private final double heure;
@@ -40,7 +40,7 @@ public enum Heure {
 	 * @param pName
 	 *            Nom de l'heure de type 'String'.
 	 * @param pHeure
-	 *            Heure associée au nom, de type 'double'.
+	 *            Heure associee au nom, de type 'double'.
 	 * @return Aucun.
 	 */
 	private Heure(String pName, double pHeure) {
@@ -63,7 +63,7 @@ public enum Heure {
 	 * RENVOIE LE SYMBOLE DE L'HEURE.
 	 * 
 	 * @param Aucun.
-	 * @return symbol Symbole de l'heure utilisé dans les fichiers XML, de type
+	 * @return symbol Symbole de l'heure utilise dans les fichiers XML, de type
 	 *         'String'.
 	 */
 	public String getSymbol() {
@@ -84,9 +84,9 @@ public enum Heure {
 	 * RENVOIE L'HEURE CORRESPONDANT A UN SYMBOLE DONNE.
 	 * 
 	 * @param pSymbol
-	 *            Symbole recherché de type 'String'.
-	 * @return affectation Heure associée au symbole si la recherche a donné un
-	 *         résultat. 'H5M0' sinon.
+	 *            Symbole recherche de type 'String'.
+	 * @return affectation Heure associee au symbole si la recherche a donne un
+	 *         resultat. 'H5M0' sinon.
 	 */
 	public static Heure affecter(String pSymbol) {
 		Heure affectation = H5M0;

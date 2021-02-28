@@ -11,7 +11,7 @@ package typedef ;
 
 public class BaliseXML {
 	
-	// Balises utilisées dans les fichiers XML.
+	// Balises utilisees dans les fichiers XML.
 	
 	public static final String XML_RACINE = "rando" ;
 	

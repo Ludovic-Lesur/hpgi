@@ -38,9 +38,9 @@ public class FenetreEtape extends JFrame implements ActionListener {
 	 * CONSTRUCTEUR DE LA CLASSE FENETREETAPE.
 	 * 
 	 * @param pI
-	 *            Interface graphique mère, de type 'Interface'.
+	 *            Interface graphique mere, de type 'Interface'.
 	 * @param pRando
-	 *            Randonnée à laquelle doit être ajoutée l'étape.
+	 *            Randonnee a laquelle doit etre ajoutee l'etape.
 	 * @return Aucun.
 	 */
 	public FenetreEtape(Interface pI, Rando pRando) {
@@ -49,7 +49,7 @@ public class FenetreEtape extends JFrame implements ActionListener {
 		rando = pRando;
 
 		fenetre = new JFrame();
-		fenetre.setTitle("Ajouter étape");
+		fenetre.setTitle("Ajouter etape");
 		fenetre.setSize(300, 250);
 		fenetre.setResizable(false);
 		fenetre.setLocationRelativeTo(null);
@@ -67,7 +67,7 @@ public class FenetreEtape extends JFrame implements ActionListener {
 		gbc.gridwidth = 2;
 		gbc.gridx = 0;
 		gbc.gridy = 0;
-		position = new JLabel("Position de l'étape dans la randonnée :");
+		position = new JLabel("Position de l'etape dans la randonnee :");
 		position.setFont(Interface.police);
 		position.setForeground(Color.yellow);
 		panel.add(position, gbc);
@@ -88,7 +88,7 @@ public class FenetreEtape extends JFrame implements ActionListener {
 		gbc.insets.bottom = 30;
 		gbc.gridx = 0;
 		gbc.gridy = 2;
-		autre = new JRadioButton("Autre numéro");
+		autre = new JRadioButton("Autre numero");
 		autre.setFont(Interface.police);
 		autre.setOpaque(false);
 		autre.setForeground(Color.white);
@@ -136,7 +136,7 @@ public class FenetreEtape extends JFrame implements ActionListener {
 		choixPosition.add(autre);
 		disableNum();
 
-		// Affichage de la fenêtre
+		// Affichage de la fenetre
 		fenetre.setContentPane(panel);
 		fenetre.setVisible(true);
 	}
@@ -183,7 +183,7 @@ public class FenetreEtape extends JFrame implements ActionListener {
 	 * DEFINIT LES ACTIONS DES BOUTONS.
 	 * 
 	 * @param e
-	 *            Evènement déclenché par l'appui sur un bouton.
+	 *            Evenement declenche par l'appui sur un bouton.
 	 * @return Aucun.
 	 */
 	public void actionPerformed(ActionEvent e) {

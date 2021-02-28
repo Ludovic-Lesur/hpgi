@@ -36,18 +36,18 @@ public class FenetreSuppression extends JFrame implements ActionListener {
 	 * CONSTRUCTEUR DE LA CLASSE FENETRESUPPRESSION.
 	 * 
 	 * @param pI
-	 *            Interface graphique mère, de type 'Interface'.
+	 *            Interface graphique mere, de type 'Interface'.
 	 * @param pRando
-	 *            Randonnée dont on doit supprimer un attribut (etape ou point),
+	 *            Randonnee dont on doit supprimer un attribut (etape ou point),
 	 *            de type 'Rando'.
 	 * @param pEtape
-	 *            Objet 'Etape à supprimer si pBoolEtape = 'true'. 'null' sinon.
+	 *            Objet 'Etape a supprimer si pBoolEtape = 'true'. 'null' sinon.
 	 * @param pPointGeo
-	 *            Objet 'PointGeo' à supprimer si pBoolEtape = 'false'. 'null'
+	 *            Objet 'PointGeo' a supprimer si pBoolEtape = 'false'. 'null'
 	 *            sinon.
 	 * @param pBoolEtape
-	 *            Booléen indiquant l'attribut à supprimer. 'true' = suppression
-	 *            d'une étape. 'false' = suppression d'un point.
+	 *            Booleen indiquant l'attribut a supprimer. 'true' = suppression
+	 *            d'une etape. 'false' = suppression d'un point.
 	 * @return Aucun.
 	 */
 	public FenetreSuppression(Interface pI, Rando pRando, Etape pEtape, PointGeo pPointGeo, boolean pBoolEtape) {
@@ -58,10 +58,10 @@ public class FenetreSuppression extends JFrame implements ActionListener {
 		pointCourant = pPointGeo;
 		etape = pBoolEtape;
 
-		// Création de l'interface
+		// Creation de l'interface
 		fenetre = new JFrame();
 		if (etape == true) {
-			fenetre.setTitle("Supprimer étape");
+			fenetre.setTitle("Supprimer etape");
 		} else {
 			fenetre.setTitle("Supprimer point");
 		}
@@ -84,7 +84,7 @@ public class FenetreSuppression extends JFrame implements ActionListener {
 		gbc.gridy = 0;
 		question = new JLabel();
 		if (etape == true) {
-			question.setText("Supprimer l'étape ?");
+			question.setText("Supprimer l'etape ?");
 		} else {
 			question.setText("Supprimer le point ?");
 		}
@@ -126,7 +126,7 @@ public class FenetreSuppression extends JFrame implements ActionListener {
 		non.addActionListener(this);
 		panel.add(non, gbc);
 
-		// Affichage de la fenêtre
+		// Affichage de la fenetre
 		fenetre.setContentPane(panel);
 		fenetre.setVisible(true);
 	}
@@ -135,7 +135,7 @@ public class FenetreSuppression extends JFrame implements ActionListener {
 	 * DEFINIT LES ACTIONS DES BOUTONS.
 	 * 
 	 * @param e
-	 *            Evènement déclenché par l'appui sur un bouton.
+	 *            Evenement declenche par l'appui sur un bouton.
 	 * @return Aucun.
 	 */
 	public void actionPerformed(ActionEvent e) {

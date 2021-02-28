@@ -12,7 +12,7 @@ public enum Condition {
 	R("Hotel, Gite ou Refuge"),
 	B("Bivouac");
 
-	// Attributs de chaque élément de l'énumération.
+	// Attributs de chaque element de l'enumeration.
 	private final String symbol;
 	private final String name;
 
@@ -41,7 +41,7 @@ public enum Condition {
 	 * RENVOIE LE SYMBOLE DE LA CONDITION.
 	 * 
 	 * @param Aucun.
-	 * @return symbol Symbole de la condition utilisé dans les fichiers XML, de
+	 * @return symbol Symbole de la condition utilise dans les fichiers XML, de
 	 *         type 'String'.
 	 */
 	public String getSymbol() {
@@ -52,9 +52,9 @@ public enum Condition {
 	 * RENVOIE LA CONDITION CORRESPONDANT A UN SYMBOLE DONNE.
 	 * 
 	 * @param pSymbol
-	 *            Symbole recherché de type 'String'.
-	 * @return affectation Condition associée au symbole si la recherche a donné
-	 *         un résultat. 'R' sinon.
+	 *            Symbole recherche de type 'String'.
+	 * @return affectation Condition associee au symbole si la recherche a donne
+	 *         un resultat. 'R' sinon.
 	 */
 	public static Condition affecter(String pSymbol) {
 		Condition affectation = R;

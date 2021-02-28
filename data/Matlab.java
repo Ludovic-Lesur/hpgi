@@ -13,44 +13,46 @@ import java.util.*;
 public class Matlab {
 
 	// Chemins absolus des dossiers du projet.
-	public static final String OUTPUT_PATH = "C:/Users/Ludovic/Documents/Eclipse/HPGI/output/";
-	public static final String MATLAB_PATH = "C:/Users/Ludovic/Documents/Eclipse/HPGI/matlab/";
-	public static final String MATLAB_RANDO_PATH = "C:/Users/Ludovic/Documents/Eclipse/HPGI/matlab/randos/";
+	public static final String MATLAB_OUTPUT_PATH = "matlab/output/";
+	public static final String MATLAB_PATH = "matlab/";
+	public static final String MATLAB_RANDO_PATH = "matlab/hikes/";
 
 	/**
 	 * CREE UN DOSSIER DE SORTIE POUR UNE NOUVELLE RANDONNEE.
 	 * 
 	 * @param r
-	 *            : Randonnée pour laquelle un dossier doit être créé.
+	 *            : Randonnee pour laquelle un dossier doit etre cree.
 	 * @return Aucun.
 	 */
 	public static void creerDossierLatex(Rando r) {
-		File dossier = new File(OUTPUT_PATH + r.getNom());
-		dossier.mkdir();
+		File dossier = new File(MATLAB_OUTPUT_PATH + r.getNom());
+		dossier.mkdirs();
 	}
 
 	/**
 	 * CREE LE FICHIER MATLAB ASSOCIE A UNE RANDONNEE.
 	 * 
 	 * @param r
-	 *            : Randonnée pour laquelle le fichier Matlab doit être créé.
+	 *            : Randonnee pour laquelle le fichier Matlab doit etre cree.
 	 * @return Aucun.
 	 */
 	public static void creerMatlab(Rando r) throws IOException {
-
+		
+		File dossier = new File(MATLAB_RANDO_PATH);
+		dossier.mkdirs();
 		File txtMatlab = new File(MATLAB_RANDO_PATH + r.getNom() + "_Matlab.txt");
 		FileWriter w = new FileWriter(txtMatlab);
 
-		// Informations de la randonnée.
+		// Informations de la randonnee.
 		w.write(r.getNom() + "\r\n");
 		w.write(Integer.toString(r.getNumEtapes()) + "\r\n");
 
-		// Boucle des étapes...
+		// Boucle des etapes...
 		Iterator<Etape> i = r.getTrace().iterator();
 		while (i.hasNext()) {
 			Etape e = i.next();
 
-			// Informations de l'étape.
+			// Informations de l'etape.
 			w.write("\\textbf{" + r.getNom() + "} $ \\qquad $ " + e.getNomMatlab() + "\r\n");
 			if (e.getNumChemins() == 0) {
 				w.write("0 ");
@@ -69,13 +71,13 @@ public class Matlab {
 				PointGeo p = j.next();
 				nbPoints++;
 				// Informations du point.
-				// En tête indiquant le lieu du repas de midi.
+				// En tete indiquant le lieu du repas de midi.
 				if (nbPoints == e.getLieuMidi()) {
 					w.write("MIDI_");
 				}
 				// Toponyme.
 				w.write("\\textit{" + p.getNom() + "}");
-				// Petit déjeuner.
+				// Petit dejeuner.
 				if (nbPoints == 1) {
 					w.write("_\\textbf{(" + e.getDejeuner().getSymbol() + ")}");
 				}

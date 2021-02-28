@@ -55,17 +55,17 @@ public class FenetrePoint extends JFrame implements ActionListener, DocumentList
 	 * CONSTRUCTEUR DE LA CLASSE FENETREPOINT.
 	 * 
 	 * @param pI
-	 *            Interface graphique mère, de type 'Interface'.
+	 *            Interface graphique mere, de type 'Interface'.
 	 * @param pPoint
-	 *            Point dont on doit modifier les paramètres de type 'PointGeo'.
+	 *            Point dont on doit modifier les parametres de type 'PointGeo'.
 	 * @param pModif
-	 *            Booléen indiquant si la fenêtre doit s'ouvrir en mode ajout ou
+	 *            Booleen indiquant si la fenetre doit s'ouvrir en mode ajout ou
 	 *            en mode modification. 'true' = modification d'une vue
 	 *            existante. 'false' = ajout d'une nouvelle vue.
 	 * @param pRando
-	 *            Randonnée courante de type 'Rando'.
+	 *            Randonnee courante de type 'Rando'.
 	 * @param pNumEtape
-	 *            Numéro de l'étape à laquelle doit être ajouté le point.
+	 *            Numero de l'etape a laquelle doit etre ajoute le point.
 	 * @return Aucun.
 	 */
 	public FenetrePoint(Interface pI, PointGeo pPoint, boolean pModif, Rando pRando, int pNumEtape) {
@@ -79,7 +79,7 @@ public class FenetrePoint extends JFrame implements ActionListener, DocumentList
 			ancienPk = point.getPK();
 		}
 
-		// Création de l'interface
+		// Creation de l'interface
 		fenetre = new JFrame();
 		if (modif == true) {
 			fenetre.setTitle("Modifier point");
@@ -188,7 +188,7 @@ public class FenetrePoint extends JFrame implements ActionListener, DocumentList
 		annuler.addActionListener(this);
 		panel.add(annuler, gbc);
 
-		// Affichage de la fenêtre
+		// Affichage de la fenetre
 		checkTextFields();
 		fenetre.setContentPane(panel);
 		fenetre.setVisible(true);
@@ -198,7 +198,7 @@ public class FenetrePoint extends JFrame implements ActionListener, DocumentList
 	 * SELECTIONNE L'ITEM CORRECT EN FONCTION DU TOPONYME ACTUEL.
 	 * 
 	 * @param p
-	 *            Point dont on doit modifier les paramètres.
+	 *            Point dont on doit modifier les parametres.
 	 * @return Aucun.
 	 */
 	private void selectToponyme(PointGeo p) {
@@ -212,7 +212,7 @@ public class FenetrePoint extends JFrame implements ActionListener, DocumentList
 	 * SELECTIONNE L'ITEM CORRECT EN FONCTION DU PK ACTUEL.
 	 * 
 	 * @param p
-	 *            Point dont on doit modifier les paramètres.
+	 *            Point dont on doit modifier les parametres.
 	 * @return Aucun.
 	 */
 	private void selectPk(PointGeo p) {
@@ -228,7 +228,7 @@ public class FenetrePoint extends JFrame implements ActionListener, DocumentList
 	 * SELECTIONNE L'ITEM CORRECT EN FONCTION DE L'ALTITUDE ACTUELLE.
 	 * 
 	 * @param p
-	 *            Point dont on doit modifier les paramètres.
+	 *            Point dont on doit modifier les parametres.
 	 * @return Aucun.
 	 */
 	private void selectAltitude(PointGeo p) {
@@ -244,7 +244,7 @@ public class FenetrePoint extends JFrame implements ActionListener, DocumentList
 	 * SELECTIONNE L'ITEM CORRECT EN FONCTION DU TEMPS DE PAUSE ACTUEL.
 	 * 
 	 * @param p
-	 *            Point dont on doit modifier les paramètres.
+	 *            Point dont on doit modifier les parametres.
 	 * @return Aucun.
 	 */
 	private void selectPause(PointGeo p) {
@@ -350,13 +350,13 @@ public class FenetrePoint extends JFrame implements ActionListener, DocumentList
 	 * DEFINIT LES ACTIONS DES BOUTONS.
 	 * 
 	 * @param e
-	 *            Evènement déclenché par l'appui sur un bouton.
+	 *            Evenement declenche par l'appui sur un bouton.
 	 * @return Aucun.
 	 */
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == ok) {
 
-			// Mise à jour de la randonnée avant ajout du point.
+			// Mise a jour de la randonnee avant ajout du point.
 			randoCourante.update();
 
 			if (modif == true) {
@@ -387,7 +387,7 @@ public class FenetrePoint extends JFrame implements ActionListener, DocumentList
 	 * FONCTIONS DE VERIFICATION DE SAISIE CLAVIER.
 	 * 
 	 * @param e
-	 *            Evènement déclenché par une saisie clavier.
+	 *            Evenement declenche par une saisie clavier.
 	 * @return Aucun.
 	 */
 	@Override

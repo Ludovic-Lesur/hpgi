@@ -1,5 +1,5 @@
 *.class
-data/randos
-matlab/randos
-matlab/randoCourante.txt
-output/
+matlab/hikes
+matlab/output
+matlab/hike.txt
+

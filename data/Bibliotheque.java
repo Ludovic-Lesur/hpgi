@@ -20,8 +20,8 @@ public class Bibliotheque {
 	private Interface i;
 
 	// Attributs
-	public static final String dossierRandos = "C:/Users/Ludovic/Documents/Eclipse/HPGI/data/randos";
-	public static final String SYM_ALL = "Toutes les randonnées   ";
+	public static final String dossierRandos = "data/hikes";
+	public static final String SYM_ALL = "Toutes les randonnees   ";
 	private int nbRandos;
 	Vector<Rando> listeRandos;
 
@@ -35,23 +35,23 @@ public class Bibliotheque {
 		i = pI;
 		nbRandos = 0;
 		listeRandos = new Vector<Rando>();
-		// Parcours des fichiers dans le dossier passé en argument...
+		// Parcours des fichiers dans le dossier passe en argument...
 		File dossier = new File(dossierRandos);
 		File[] fichiers = dossier.listFiles();
 		int i = 0;
-		// Pour chaque fichier trouvé dans le dossier...
+		// Pour chaque fichier trouve dans le dossier...
 		for (i = 0; i < (fichiers.length); i++) {
 			if (fichiers[i].isFile()) {
 				String nomFichier = fichiers[i].toString();
 				if (nomFichier.lastIndexOf(".") > 0) {
-					// On vérifie l'extention XML.
+					// On verifie l'extention XML.
 					String ext = nomFichier.substring(nomFichier.lastIndexOf("."));
 					if (ext.compareTo(".xml") == 0) {
-						// On crée une structure de données.
+						// On cree une structure de donnees.
 						Rando r = new Rando(fichiers[i]);
 						listeRandos.addElement(r);
 						nbRandos++;
-						System.out.println("Ajout de la randonnée : " + r.getNom());
+						System.out.println("Ajout de la randonnee : " + r.getNom());
 					}
 				}
 			}
@@ -62,7 +62,7 @@ public class Bibliotheque {
 	 * RETOURNE LA LISTE DES RANDONNEES.
 	 * 
 	 * @param Aucun.
-	 * @return listeRandos Liste des randonnées de la bibliothèque de type
+	 * @return listeRandos Liste des randonnees de la bibliotheque de type
 	 *         'Vector<Rando>'.
 	 */
 	public Vector<Rando> getRandos() {
@@ -74,8 +74,8 @@ public class Bibliotheque {
 	 * CARACTERES.
 	 * 
 	 * @param Aucun.
-	 * @return boxRandos Liste des randonnées de la bibliothèque de type
-	 *         'String[]'. Utilisée pour créer la 'JComboBox' des randonnées
+	 * @return boxRandos Liste des randonnees de la bibliotheque de type
+	 *         'String[]'. Utilisee pour creer la 'JComboBox' des randonnees
 	 *         dans la classe 'RechercheRando'.
 	 */
 	public String[] getNomRandos() {
@@ -94,8 +94,8 @@ public class Bibliotheque {
 	 * RECHERCHE UNE RANDONNEE DANS LA BIBLIOTHEQUE.
 	 * 
 	 * @param randoCherchee
-	 *            : Nom complet de la randonnée cherchée, de type 'String'.
-	 * @return resultat : Randonnée trouvée de type 'Rando'. Le résultat est
+	 *            : Nom complet de la randonnee cherchee, de type 'String'.
+	 * @return resultat : Randonnee trouvee de type 'Rando'. Le resultat est
 	 *         unique et certain par construction.
 	 */
 	public Rando rechercherRando(String randoCherchee) {
@@ -115,20 +115,20 @@ public class Bibliotheque {
 	 * CREE UN FICHIER XML VIERGE POUR UNE NOUVELLE RANDONNEE.
 	 * 
 	 * @param nomRando
-	 *            : Nom de la nouvelle randonnée de type 'String'.
+	 *            : Nom de la nouvelle randonnee de type 'String'.
 	 * @param nbEtapes
-	 *            : Nombre d'étapes de la nouvelle randonnée de type 'int'.
+	 *            : Nombre d'etapes de la nouvelle randonnee de type 'int'.
 	 * @return Aucun.
 	 */
 	public void creerRando(String nomRando) {
 		DocType xmlFormat = new DocType(BaliseXML.XML_RACINE, "format.dtd");
 		Element newRacine = new Element(BaliseXML.XML_RACINE);
 		Document newDocument = new Document(newRacine, xmlFormat);
-		// Nom de la randonnée
+		// Nom de la randonnee
 		Element nom = new Element(BaliseXML.XML_NOM);
 		nom.setText(nomRando);
 		newRacine.addContent(nom);
-		// Création du fichier XML
+		// Creation du fichier XML
 		try {
 			File newFichier = new File(dossierRandos + "/" + nomRando + ".xml");
 			Format f = Format.getPrettyFormat();
@@ -138,13 +138,13 @@ public class Bibliotheque {
 			Rando r = new Rando(newFichier);
 			listeRandos.addElement(r);
 			nbRandos++;
-			// Par défaut on ajoute une étape.
+			// Par defaut on ajoute une etape.
 			r.addXML(new Etape(), 0, true);
 			r.update();
 			i.menuGaucheAjouterRando(r);
-			// On passe automatiquement sur la vue de la bibliothèque.
+			// On passe automatiquement sur la vue de la bibliotheque.
 			i.afficherBibliotheque();
-			System.out.println("Ajout de la randonnée : " + r.getNom());
+			System.out.println("Ajout de la randonnee : " + r.getNom());
 		} catch (java.io.IOException e) {
 		}
 	}
@@ -153,8 +153,8 @@ public class Bibliotheque {
 	 * TESTE SI UNE CHAINE DE CARACTERE CONTIENT UNIQUEMENT DES CHIFFRES.
 	 * 
 	 * @param chaine
-	 *            : Chaine de caractère à tester de type 'String'.
-	 * @return 'true' si la chaine peut être convertir en 'int'. 'false' sinon.
+	 *            : Chaine de caractere a tester de type 'String'.
+	 * @return 'true' si la chaine peut etre convertir en 'int'. 'false' sinon.
 	 */
 	public static boolean isNumeric(String chaine) {
 		try {
@@ -170,8 +170,8 @@ public class Bibliotheque {
 	 * EVENTUELLEMENT UN POINT.
 	 * 
 	 * @param chaine
-	 *            : Chaine de caractère à tester de type 'String'.
-	 * @return 'true' si la chaine peut être convertir en 'double', 'false'
+	 *            : Chaine de caractere a tester de type 'String'.
+	 * @return 'true' si la chaine peut etre convertir en 'double', 'false'
 	 *         sinon.
 	 */
 	public static boolean isDouble(String chaine) {
@@ -187,8 +187,8 @@ public class Bibliotheque {
 	 * CONVERTIT UNE CHAINE DE CARACTERES EN ENTIER SI POSSIBLE.
 	 * 
 	 * @param str
-	 *            : Chaine de caractère à convertir de type 'String'.
-	 * @return resultat : Nombre entier équivalent à 'str' si la convertion est
+	 *            : Chaine de caractere a convertir de type 'String'.
+	 * @return resultat : Nombre entier equivalent a 'str' si la convertion est
 	 *         possible. '0' sinon.
 	 */
 	public static int stringToInteger(String str) {

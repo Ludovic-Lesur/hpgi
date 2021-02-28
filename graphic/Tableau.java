@@ -25,12 +25,12 @@ public class Tableau extends JPanel implements ActionListener {
 	private JPanel panel;
 	private GridBagConstraints gbc;
 
-	// Modèles de colonnes.
+	// Modeles de colonnes.
 	private DefaultTableModel modeleRando;
 	private DefaultTableModel modeleEtape;
 	private DefaultTableModel modelePoint;
 
-	// Eléments graphiques.
+	// Elements graphiques.
 	private JButton precedent;
 	private JButton suivant;
 	private JTable tableau;
@@ -38,22 +38,22 @@ public class Tableau extends JPanel implements ActionListener {
 	private Etape etapeCourante;
 
 	int mode; // 0 = liste de randos
-				// 1 = liste d'étapes
+				// 1 = liste d'etapes
 				// 2 = liste de points
 
-	private Vector<Rando> listeRandos; // Affichage de la bibliothèque.
-	private Vector<Etape> listeEtapes; // Affichage d'une randonnée.
-	private Vector<PointGeo> listePoints; // Affichage d'une étape.
+	private Vector<Rando> listeRandos; // Affichage de la bibliotheque.
+	private Vector<Etape> listeEtapes; // Affichage d'une randonnee.
+	private Vector<PointGeo> listePoints; // Affichage d'une etape.
 
 	/**
 	 * CONSTRUCTEUR DE LA CLASSE TABLEAU.
 	 * 
 	 * @param pI
-	 *            Interface graphique mère, de type 'Interface'.
+	 *            Interface graphique mere, de type 'Interface'.
 	 * @param mainPanel
-	 *            Panel de l'interface graphique mère, de type 'JPanel'.
+	 *            Panel de l'interface graphique mere, de type 'JPanel'.
 	 * @param mainGbc
-	 *            Contraintes de l'interface graphique mère, de type
+	 *            Contraintes de l'interface graphique mere, de type
 	 *            'GridBagConstraints'.
 	 * @return Aucun.
 	 */
@@ -64,7 +64,7 @@ public class Tableau extends JPanel implements ActionListener {
 		mainGbc.gridx = 1;
 		mainGbc.gridy = 0;
 
-		// Modèles de colonnes.
+		// Modeles de colonnes.
 		modeleRando = new DefaultTableModel();
 		modeleRando.addColumn("NOM");
 		modeleRando.addColumn("NOMBRE D'ETAPES");
@@ -124,7 +124,7 @@ public class Tableau extends JPanel implements ActionListener {
 		dimensionnerTableauInit();
 		mode = 0;
 
-		// Détection du clic souris
+		// Detection du clic souris
 		tableau.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent evnt) {
 				if (evnt.getClickCount() == 1) {
@@ -134,7 +134,7 @@ public class Tableau extends JPanel implements ActionListener {
 					case 0:
 						i.setRando(listeRandos.elementAt(ind));
 						break;
-					// Liste des étapes
+					// Liste des etapes
 					case 1:
 						i.setEtape(listeEtapes.elementAt(ind));
 						break;
@@ -163,7 +163,7 @@ public class Tableau extends JPanel implements ActionListener {
 	 * TESTE SI UNE LIGNE DU TABLEAU A ETE SELECTIONNEE.
 	 * 
 	 * @param Aucun.
-	 * @return 'true' si une ligne du tableau a été sélectionnée. 'false' sinon.
+	 * @return 'true' si une ligne du tableau a ete selectionnee. 'false' sinon.
 	 */
 	public boolean rowIsSelected() {
 		return (tableau.getSelectedRow() != -1);
@@ -191,8 +191,8 @@ public class Tableau extends JPanel implements ActionListener {
 	 * DIMENSIONNE LE TABLEAU POUR L'AFFICHAGE D'UNE BIBLIOTHEQUE DE RANDONNEES.
 	 * 
 	 * @param b
-	 *            Bibliotheque de randonnées dont on doit afficher les
-	 *            caractéristiques, de type 'Bibliotheque'.
+	 *            Bibliotheque de randonnees dont on doit afficher les
+	 *            caracteristiques, de type 'Bibliotheque'.
 	 * @return Aucun.
 	 */
 	private void dimensionnerTableau(Bibliotheque b) {
@@ -211,7 +211,7 @@ public class Tableau extends JPanel implements ActionListener {
 	 * DIMENSIONNE LE TABLEAU POUR L'AFFICHAGE D'UNE RANDONNEE.
 	 * 
 	 * @param r
-	 *            Randonnée dont on doit afficher les caractéristiques, de type
+	 *            Randonnee dont on doit afficher les caracteristiques, de type
 	 *            'Rando'.
 	 * @return Aucun.
 	 */
@@ -239,7 +239,7 @@ public class Tableau extends JPanel implements ActionListener {
 	 * DIMENSIONNE LE TABLEAU POUR L'AFFICHAGE D'UNE ETAPE.
 	 * 
 	 * @param e
-	 *            Etape dont on doit afficher les caractéristiques, de type
+	 *            Etape dont on doit afficher les caracteristiques, de type
 	 *            'Etape'.
 	 * @return Aucun.
 	 */
@@ -290,8 +290,8 @@ public class Tableau extends JPanel implements ActionListener {
 	 * DEFINIT L'AFFICHAGE POUR UNE BIBLIOTHEQUE DE RANDONNEES.
 	 * 
 	 * @param b
-	 *            Bibliotheque de randonnées dont on doit afficher les
-	 *            caractéristiques, de type 'Bibliotheque'.
+	 *            Bibliotheque de randonnees dont on doit afficher les
+	 *            caracteristiques, de type 'Bibliotheque'.
 	 * @return Aucun.
 	 */
 	public void update(Bibliotheque b) {
@@ -318,7 +318,7 @@ public class Tableau extends JPanel implements ActionListener {
 	 * DEFINIT L'AFFICHAGE POUR UNE RANDONNEE.
 	 * 
 	 * @param r
-	 *            Randonnée dont on doit afficher les caractéristiques, de type
+	 *            Randonnee dont on doit afficher les caracteristiques, de type
 	 *            'Rando'.
 	 * @return Aucun.
 	 */
@@ -349,7 +349,7 @@ public class Tableau extends JPanel implements ActionListener {
 	 * DEFINIT L'AFFICHAGE POUR UNE ETAPE.
 	 * 
 	 * @param e
-	 *            Etape dont on doit afficher les caractéristiques, de type
+	 *            Etape dont on doit afficher les caracteristiques, de type
 	 *            'Etape'.
 	 * @return Aucun.
 	 */
@@ -484,7 +484,7 @@ public class Tableau extends JPanel implements ActionListener {
 	 * DEFINIT LES ACTIONS DES BOUTONS.
 	 * 
 	 * @param e
-	 *            Evènement déclenché par l'appui sur un bouton.
+	 *            Evenement declenche par l'appui sur un bouton.
 	 * @return Aucun.
 	 */
 	public void actionPerformed(ActionEvent e) {
